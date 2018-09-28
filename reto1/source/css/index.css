@@ -1,0 +1,91 @@
+body::-webkit-scrollbar{
+    width: 0;
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+header{
+    height: 10%;
+}
+footer{
+    height: 5%;
+}
+#secundario div {
+    padding: .5em;
+    width: 100%;
+}
+#wrapper{
+    width: 100%;
+    height:  85%;
+}
+#principal{
+    width: 85%;
+    height:  100%;
+    float: left;
+}
+#secundario{
+    width: 15%;
+    height:  100%;
+    float: left;
+}
+.hundred_padding{
+    height: 100%;
+    width: 100%;
+    padding: .5em;
+}
+.vertical_half{
+    height: 50%;
+}
+.horizontal_float{
+    height: 100%;
+    float: left;
+}
+#manual_display, #auto_display{
+    width: 75%;
+}
+#always_displayed, #pause_continue{
+    width: 25%;
+}
+#control_manual{
+    width: 100%;
+    height: 65%;
+    padding: .5em;
+}
+#inner_manual, #inner_auto, #inner_displayed, #inner_pause{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+#control_auto{
+    height: 100%;
+    padding: .5em;
+}
+#always_displayed, #pause_continue{
+    padding: .5em;
+}
+#animation{
+    width: 100%;
+    height: 35%;
+    padding: .5em;
+}
+#animation_box{
+    width: 10%;
+    height: 100%;
+    background: red;
+}
+#logo{
+    height: 20%;
+}
+#switch_manauto{
+    height: 60%;
+}
+#stats{
+    height: 20%;
+}
+#inner_stats, #inner_logo{
+    border: 1px solid black;
+    height: 100%    ;
+}

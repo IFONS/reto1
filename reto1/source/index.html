@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BatCode</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <div id="wrapper">
+        <div id="secundario">
+            <div id="logo">
+                <div id="inner_logo"></div>
+            </div>
+            <div id="switch_manauto">
+                <div class="vertical_half" style="border: 1px solid black;"></div>
+                <div class="vertical_half" style="border: 1px solid black;"></div>
+            </div>
+            <div id="stats">
+                <div id="inner_stats"></div>
+            </div>
+        </div>
+        <div id="principal">
+            <div class="vertical_half">
+                <div  id="manual_display" class="horizontal_float">
+                    <div id="control_manual">
+                        <div id="inner_manual">
+
+                        </div>
+                    </div>
+                    <div id="animation">
+                        <div id="animation_box"></div>
+                    </div>
+                </div>
+                <div id="always_displayed" class="horizontal_float">
+                    <div id="inner_displayed">
+
+                    </div>
+                </div>
+            </div>
+            <div class="vertical_half">
+                <div  id="auto_display" class="horizontal_float">
+                    <div id="control_auto">
+                        <div id="inner_auto"></div>
+                    </div>
+                </div>
+                <div id="pause_continue" class="horizontal_float">
+                    <div id="inner_pause">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+<script>
+    $(document).ready(function () {
+        var h = $(window).height();
+        var w = $(window).width();
+        $("body").height(h);
+        $("body").width(w);
+    });
+    $(window).resize(function () {
+        var h = $(window).height();
+        var w = $(window).width();
+        $("body").height(h);
+        $("body").width(w);
+    });
+</script>
+</html>
