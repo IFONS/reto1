@@ -36,7 +36,7 @@ and (orientation: portrait){
 	}
 	#switch_manauto div{		
 	    text-align: center;
-	    padding: 1%;
+	    padding: 0 !important;
 	}
 	#stats{
 		width: 20% !important;
@@ -96,165 +96,31 @@ and (orientation: portrait){
 		margin-top: 5% !important;
 	}
 	#manual_data{
-		height: 2em !important;
+		height: 1.5em !important;
 	}
 	#accept_manual{
 		margin-top: 1% !important;
+		width: 25% !important;
 	}
 }
-@media (min-width: 700px){
-	body::-webkit-scrollbar{
-		width: 0;
-	}
-	*{
-		box-sizing: border-box;
-	}
-	body{
-		margin: 0;
-	}
-	header{
-		height: 10%;
-	}
-	footer{
-		height: 5%;
-	}
-	.stage{
-		transition: all 1s !important;
-	}
-	.stage1{
-		margin-left: 0;
-	}
-	.stage2{
-		margin-left: 45%;
-	}
-	.stage3{
-		margin-left: 90%;
-	}
-	#type{
-		width: 1px;
-	}
-	#secundario div {
-		padding: .5em;
-		width: 100%;
-	}
-	#wrapper{
-		width: 100%;
-		height:  85%;
-	}
-	#principal{
-		width: 85%;
-		height:  100%;
-		float: left;
-	}
-	#secundario{
-		width: 15%;
-		height:  100%;
-		float: left;
-	}
-	.hundred_padding{
-		height: 100%;
-		width: 100%;
-		padding: .5em;
-	}
-	.vertical_half{
-		height: 50%;
-	}
-	.horizontal_float{
-		height: 100%;
-		float: left;
-	}
-	#manual_display, #auto_display{
-		width: 75%;
-	}
-	#always_displayed, #pause_continue{
-		width: 25%;
-	}
-	#control_manual{
-		width: 100%;
-		height: 65%;
-		padding: .5em;
-	}
-	#inner_manual, #inner_auto, #inner_displayed, #inner_pause{
-		width: 100%;
-		height: 100%;
-		/*border: 1px solid black;*/
-	}
-	#control_auto{
-		height: 100%;
-		padding: .5em;
-	}
-	#always_displayed, #pause_continue{
-		padding: .5em;
-	}
-	#animation{
-		width: 100%;
-		height: 35%;
-		padding: .5em;
-	}
+@media(min-width: 700px) and (max-width: 1080px){
 	#animation_box{
-		width: 10%;
-		height: 100%;
-		background: red;
-	}
-	#logo{
-		height: 20%;
-	}
-	#switch_manauto{
-		height: 60%;
-	}
-	#stats{
-		height: 20%;
-	}
-	#inner_stats, #inner_logo{
-		/*border: 1px solid black;*/
-		height: 100%    ;
-	}
-	#manual_input{
-		width: 80%;
-		float: left;
-	}
-	#buttons{
-		width: 20%;
-		float: left;
-		padding: .5em;
-		height: 100%;
-	}
-	#mas img, #less img{
-		width: 50%;
-		height: 50%;
-	}
-	#mas{
-		margin-bottom: 5%;
-		margin-top: 5%;
-	}
-	#buttons button{
-		width: 40%;
-		height: 40%;
-		display: block;
+		background: blue !important;
 	}
 	#manual_data{
-		height: 3em;
-		width: 100%;
+		height: 1.5em !important;
+	}
+	#buttons button{
+		width: 60% !important;
+	}
+}
+@media (max-height: 900px) and (min-height: 600px){
+	#manual_data{
+		height: 3em !important;
 	}
 	#accept_manual{
-		width: 20%;
-		padding: .25em;
-		margin: 0 40%;
+		width: 30% !important;
+		height: 3em;
+		margin: 0 35%;
 	}
-	#test{
-		height: 30%;
-		width: 100%;
-		padding: 4% 25%;
-	}
-	#fade_auto_display{
-		width: 64%;
-		height: 42%;
-		position: absolute;
-		background: black;
-		opacity: 0.5;
-	}
-	.disable{
-		display: none;
-	}
-
 }
