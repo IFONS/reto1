@@ -41,7 +41,7 @@ footer{
     background: black;
     color: black;
 }
-#menssage{
+#message{
     width: 40%;
     height: 30%;
     background: white;
@@ -49,7 +49,7 @@ footer{
     z-index: 2; 
     margin: 15% 30%;   
 }
-#menssage_text{
+#message_text{
     height: 60%;
     text-align: center;
     padding: 2em;
@@ -162,6 +162,8 @@ footer{
     width: 20%;
     padding: .25em;
     margin: 0 40%;
+    height: 4em;
+    outline: none;
 }
 #test{
     height: 30%;

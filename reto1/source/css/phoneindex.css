@@ -1,18 +1,31 @@
-@media (max-width: 700px)
-and (orientation: portrait){
-	*{
-		box-sizing: border-box;
-	}
+@media (max-width: 700px){
 	header{
 		display: none;
 	}
 	#type{
-		width: 0px !important;
+		width: 0 !important;
 	}
 	#wrapper{
 		width: 100% !important;
-		height: 100% !important;
+		height: 95% !important;
 		position: relative;
+	}
+	#fullfade{
+		z-index: 2;
+	}
+	#message{
+		width: 50% !important;
+		height: 20% !important;
+		margin: 50% 25% !important;
+	}
+	#message_text{
+		font-size: 13px !important;
+		padding: 1em !important;
+	}
+	#message_accept{
+		height: 2em !important;
+		width: 40% !important;
+		margin: 0 30% !important;
 	}
 	#principal{
 		width: 100% !important;
@@ -101,12 +114,10 @@ and (orientation: portrait){
 	#accept_manual{
 		margin-top: 1% !important;
 		width: 25% !important;
+		height: 1.7em !important;
 	}
 }
 @media(min-width: 700px) and (max-width: 1080px){
-	#animation_box{
-		background: blue !important;
-	}
 	#manual_data{
 		height: 1.5em !important;
 	}
@@ -116,11 +127,43 @@ and (orientation: portrait){
 }
 @media (max-height: 900px) and (min-height: 600px){
 	#manual_data{
-		height: 3em !important;
+		height: 2em !important;
+		width: 120% !important;
 	}
 	#accept_manual{
 		width: 30% !important;
-		height: 3em;
+		height: 3em !important;
 		margin: 0 35%;
+	}
+}
+@media (max-height: 450px){
+	#message_text{
+		font-size: 17px !important;
+		padding: .5em !important;
+	}
+	#message_accept{
+		height: 2em !important;
+		width: 30% !important;
+		margin: 0 35% !important;
+	}
+	#switch_manauto button{
+		overflow: hidden;
+	}
+	#manual_data{
+		height: 2em !important;
+	}
+	#accept_manual{
+		height: 2em !important;
+		width: 30% !important;
+		margin: 0 35% !important;
+	}
+	#buttons button{
+		width: 80% !important;
+	}
+	#switch_manauto{
+		padding: .15em !important;
+	}
+	#switch_manauto div{
+		padding: .15em !important;
 	}
 }

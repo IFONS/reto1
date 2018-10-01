@@ -10,9 +10,9 @@
 </head>
 <body>
     <div id="fullfade" class="disable"></div>
-    <div id="menssage" class="disable">
-        <div id="menssage_text">Se volvera a la posicion inical</div>
-        <div id="menssage_button">
+    <div id="message" class="disable">
+        <div id="message_text">Se volvera a la posicion inical</div>
+        <div id="message_button">
             <button id="message_accept" onclick="closemsg()">Aceptar</button>
         </div>
     </div>
@@ -27,7 +27,7 @@
                     <button id="button_manual" onclick="showhide('auto_display','control_manual')">Manual</button>
                 </div>
                 <div class="vertical_half">
-                    <button id="button_auto" onclick="showhide('control_manual', 'auto_display')">Automatico</button>
+                    <button id="button_auto" onclick="showhide('control_manual', 'auto_display')">Auto</button>
                 </div>
             </div>
             <div id="stats">
@@ -42,7 +42,7 @@
                         <div id="inner_manual">
                             <div id="manual_input">
                                 <div id="test"><input id="manual_data" type="text" value="1" maxlength="3"></div>
-                                <button id="accept_manual">Aceptar</button>
+                                <button id="accept_manual" onclick="position()">Aceptar</button>
                             </div>
                             <div id="buttons">
                                 <button id="mas" onclick="add()">
@@ -105,23 +105,34 @@
     }); 
     function showmsg(){
         document.getElementById("fullfade").classList.remove('disable');
-        document.getElementById("menssage").classList.remove('disable');
+        document.getElementById("message").classList.remove('disable');
     }
     function closemsg(){
         document.getElementById("fullfade").classList.add('disable');
-        document.getElementById("menssage").classList.add('disable');
+        document.getElementById("message").classList.add('disable');
+        document.getElementById("animation_box").style.margin = "0 0 0 0";
+        document.getElementById("manual_data").value = "1";
+    }
+    function position() {
+        var x = parseInt(document.getElementById("manual_data").value);
+        if(x >= 1 && x <= 500) {
+            var margin = x * 90 / 500;
+            document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%";
+        }
     }
     if($("#type").width()===0){
         $("#auto_display").hide();
         $("#pause_continue").hide();
         document.getElementById("fade_auto_display").classList.add('disable');
-        document.getElementById("fade_manual_display").classList.add('disable');              
+        document.getElementById("fade_manual_display").classList.add('disable');
+        document.getElementById("fade_manual_display").classList.add('disable');
+        document.getElementById("button_manual").setAttribute("disabled","disabled");
     }else{
         document.getElementById("fade_manual_display").classList.add('disable');
         document.getElementById("button_manual").setAttribute("disabled","disabled");        
     }
 	var elo = document.getElementById("animation_box");
-	setInterval(function(){	
+	/*setInterval(function(){
 		if(elo.classList.contains("stage1")){
 			elo.classList.add("stage2");
 			elo.classList.remove("stage1");	
@@ -132,9 +143,7 @@
 			elo.classList.add("stage1");
 			elo.classList.remove("stage3");	
 		}
-	},2000);
-
-       
+	},2000);*/
 
     function showhide(tohide, toshow){ 
         showmsg();    
@@ -144,9 +153,13 @@
             if(element.classList.contains("animation_responsive")||toshow!="auto_display"){            
                 element.classList.remove("animation_responsive"); 
                 $("#pause_continue").hide();
+                document.getElementById("button_manual").setAttribute("disabled","disabled");
+                document.getElementById("button_auto").removeAttribute("disabled");
             }else {
                 element.classList.add("animation_responsive"); 
                 $("#pause_continue").show();
+                document.getElementById("button_manual").removeAttribute("disabled","disabled");
+                document.getElementById("button_auto").setAttribute("disabled","disabled");
             }     
         $("#"+tohide).hide();
         $("#"+toshow).show();
