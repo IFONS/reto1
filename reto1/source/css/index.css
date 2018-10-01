@@ -46,7 +46,7 @@ footer{
     height: 30%;
     background: white;
     position: absolute;
-    z-index: 2; 
+    z-index: 2;
     margin: 15% 30%;   
 }
 #message_text{

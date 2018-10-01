@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>BatCode</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery.js"></script>
@@ -20,7 +20,7 @@
         <input id="type" type="hidden" value="">
         <div id="secundario">
             <div id="logo">
-                <div id="inner_logo"></div>
+                <div id="inner_logo">test</div>
             </div>
             <div id="switch_manauto">
                 <div class="vertical_half">
@@ -31,7 +31,11 @@
                 </div>
             </div>
             <div id="stats">
-                <div id="inner_stats"></div>
+                <div id="inner_stats">
+                    <!--<div id="magic" class="magic" onclick="swap()">
+                        <div id="txt_graphs">GRAPHS</div>
+                    </div>-->
+                </div>
             </div>
         </div>
         <div id="principal">
@@ -88,9 +92,9 @@
     </footer>
 </body>
 <script>
-    $(document).ready(function () {     
+    $(document).ready(function () {
         var h = $(window).height();
-        var w = $(window).width();        
+        var w = $(window).width();
         $("body").height(h);
         $("body").width(w);
     	showmsg();       
@@ -144,7 +148,6 @@
 			elo.classList.remove("stage3");	
 		}
 	},2000);*/
-
     function showhide(tohide, toshow){ 
         showmsg();    
         var chance = $("#type").width();
