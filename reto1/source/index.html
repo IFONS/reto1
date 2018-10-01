@@ -93,7 +93,9 @@
         var w = $(window).width();        
         $("body").height(h);
         $("body").width(w);
-        showmsg();
+        if($("#type").width()){
+            showmsg();
+        }
     });    
     $(window).resize(function () {
         if($("#type").width()==1){
