@@ -13,6 +13,21 @@ header{
 footer{
     height: 5%;
 }
+.stage{
+    transition: all 1s !important;
+}
+.stage1{
+    margin-left: 0;
+}
+.stage2{
+    margin-left: 45%;
+}
+.stage3{
+    margin-left: 90%;
+} 
+#type{
+    width: 1px;
+}
 #secundario div {
     padding: .5em;
     width: 100%;

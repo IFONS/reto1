@@ -1,0 +1,89 @@
+@media only screen and (max-width: 700px){
+	*{
+		box-sizing: border-box;
+	}
+	header{
+		display: none;
+	}
+	#type{
+		width: 0px !important;
+	}
+	#wrapper{
+		width: 100% !important;
+		height: 100% !important;
+		position: relative;
+	}
+	#principal{
+		width: 100% !important;
+		height: 90% !important;
+	}
+	#secundario{
+		width: 100% !important;
+		height: 10% !important;
+		position: relative !important;
+	}
+	#logo, #switch_manauto, #stats{
+		float: left !important;
+		padding: .5em !important;
+		height: 100% !important;
+	}
+	#logo{
+		width: 20% !important;
+	}
+	#switch_manauto{
+		width: 60% !important;		
+	}
+	#switch_manauto div{		
+	    text-align: center;
+	    padding: 1%;
+	}
+	#stats{
+		width: 20% !important;
+	}
+	.vertical_half{
+		float: left !important;
+		width: 50% !important;
+		height: 100% !important;
+	}
+	.vertical_half_responsive:first-of-type{
+		width: 100% !important;
+		height: 30% !important;
+	}
+	.vertical_half_responsive:nth-of-type(2){
+		width: 100% !important;
+		height: 48% !important;
+	}
+	#always_displayed{
+	    position: absolute !important;	    
+	    height: 20% !important;
+	    bottom: 0px !important;
+	    width: 100% !important;
+	}
+	#manual_display{
+		width: 100% !important;
+	}
+	#auto_display, #pause_continue{
+		height: 63%;
+	}
+	#auto_display{
+		height: 19% !important;
+		position: absolute;
+		top: 10%;
+	}
+	#pause_continue{
+		height: 100% !important;
+	}
+	#control_manual{
+		height: 70% !important;
+	}
+	#animation{
+		height: 30% !important;
+	}
+	.horizontal_float_responsive{
+		width: 100% !important;
+	}
+	.animation_responsive{
+		position: relative !important;
+    	top: 70% !important;
+	}
+}	 

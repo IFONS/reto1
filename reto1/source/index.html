@@ -2,36 +2,39 @@
 <html>
 <head>
     <title>BatCode</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery.js"></script>
+    <style type="text/css"></style>    
 </head>
 <body>
-    <header>
-
+    <header>    	
     </header>
     <div id="wrapper">
+        <input id="type" type="hidden" value="">
         <div id="secundario">
             <div id="logo">
                 <div id="inner_logo"></div>
             </div>
             <div id="switch_manauto">
-                <div class="vertical_half" style="border: 1px solid black;"></div>
-                <div class="vertical_half" style="border: 1px solid black;"></div>
+                <div class="vertical_half" style="border: 1px solid black;" onclick="showhide('auto_display','control_manual')">Manual</div>
+                <div class="vertical_half" style="border: 1px solid black;" onclick="showhide('control_manual', 'auto_display')">Automatico</div>
             </div>
             <div id="stats">
                 <div id="inner_stats"></div>
             </div>
         </div>
         <div id="principal">
-            <div class="vertical_half">
+            <div class="vertical_half vertical_half_responsive">
                 <div  id="manual_display" class="horizontal_float">
                     <div id="control_manual">
                         <div id="inner_manual">
-
+                            manual
                         </div>
                     </div>
-                    <div id="animation">
-                        <div id="animation_box"></div>
+                    <div id="animation" class="">
+                        <div id="animation_box" class="stage stage1"></div>
                     </div>
                 </div>
                 <div id="always_displayed" class="horizontal_float">
@@ -40,13 +43,15 @@
                     </div>
                 </div>
             </div>
-            <div class="vertical_half">
-                <div  id="auto_display" class="horizontal_float">
+            <div class="vertical_half vertical_half_responsive">
+                <div  id="auto_display" class="horizontal_float horizontal_float_responsive">
                     <div id="control_auto">
-                        <div id="inner_auto"></div>
+                        <div id="inner_auto">
+                            Automatico
+                        </div>
                     </div>
                 </div>
-                <div id="pause_continue" class="horizontal_float">
+                <div id="pause_continue" class="horizontal_float horizontal_float_responsive">
                     <div id="inner_pause">
 
                     </div>
@@ -59,17 +64,51 @@
     </footer>
 </body>
 <script>
-    $(document).ready(function () {
+    $("#auto_display").hide();
+    $("#pause_continue").hide();
+	var elo = document.getElementById("animation_box");
+	setInterval(function(){	
+		if(elo.classList.contains("stage1")){
+			elo.classList.add("stage2");
+			elo.classList.remove("stage1");	
+		}else if(elo.classList.contains("stage2")){
+			elo.classList.add("stage3");
+			elo.classList.remove("stage2");	
+		}else if(elo.classList.contains("stage3")){
+			elo.classList.add("stage1");
+			elo.classList.remove("stage3");	
+		}
+	},2000);
+
+    $(document).ready(function () {   	
         var h = $(window).height();
-        var w = $(window).width();
+        var w = $(window).width();        
         $("body").height(h);
         $("body").width(w);
-    });
+    });    
     $(window).resize(function () {
         var h = $(window).height();
-        var w = $(window).width();
+        var w = $(window).width();       
         $("body").height(h);
         $("body").width(w);
-    });
+    });    
+
+    function showhide(tohide, toshow){     
+        var chance = $("#type").width();        
+        if (chance===0) {
+            var element = document.getElementById("animation");        
+            if(element.classList.contains("animation_responsive")||toshow!="auto_display"){            
+                element.classList.remove("animation_responsive"); 
+                $("#pause_continue").hide();
+            }else {
+                element.classList.add("animation_responsive"); 
+                $("#pause_continue").show();
+            }     
+        $("#"+tohide).hide();
+        $("#"+toshow).show();
+        } else {
+
+        }
+    }
 </script>
 </html>
