@@ -9,6 +9,13 @@
     <style type="text/css"></style>    
 </head>
 <body>
+    <div id="fullfade" class="disable"></div>
+    <div id="menssage" class="disable">
+        <div id="menssage_text">Se volvera a la posicion inical</div>
+        <div id="menssage_button">
+            <button id="message_accept" onclick="closemsg()">Aceptar</button>
+        </div>
+    </div>
     <div id="wrapper">
         <input id="type" type="hidden" value="">
         <div id="secundario">
@@ -81,14 +88,39 @@
     </footer>
 </body>
 <script>
+    $(document).ready(function () {     
+        var h = $(window).height();
+        var w = $(window).width();        
+        $("body").height(h);
+        $("body").width(w);
+        if($("#type").width()){
+            showmsg();
+        }
+    });    
+    $(window).resize(function () {
+        if($("#type").width()==1){
+            var h = $(window).height();
+            var w = $(window).width();       
+            $("body").height(h);
+            $("body").width(w);
+        }
+    }); 
+    function showmsg(){
+        document.getElementById("fullfade").classList.remove('disable');
+        document.getElementById("menssage").classList.remove('disable');
+    }
+    function closemsg(){
+        document.getElementById("fullfade").classList.add('disable');
+        document.getElementById("menssage").classList.add('disable');
+    }
     if($("#type").width()===0){
         $("#auto_display").hide();
         $("#pause_continue").hide();
         document.getElementById("fade_auto_display").classList.add('disable');
-        document.getElementById("fade_manual_display").classList.add('disable');
+        document.getElementById("fade_manual_display").classList.add('disable');              
     }else{
         document.getElementById("fade_manual_display").classList.add('disable');
-        document.getElementById("button_manual").setAttribute("disabled","disabled");
+        document.getElementById("button_manual").setAttribute("disabled","disabled");        
     }
 	var elo = document.getElementById("animation_box");
 	setInterval(function(){	
@@ -104,20 +136,10 @@
 		}
 	},2000);
 
-    $(document).ready(function () {   	
-        var h = $(window).height();
-        var w = $(window).width();        
-        $("body").height(h);
-        $("body").width(w);
-    });    
-    $(window).resize(function () {
-        var h = $(window).height();
-        var w = $(window).width();       
-        $("body").height(h);
-        $("body").width(w);
-    });    
+       
 
-    function showhide(tohide, toshow){     
+    function showhide(tohide, toshow){ 
+        showmsg();    
         var chance = $("#type").width();
         if (chance===0) {
             var element = document.getElementById("animation");        

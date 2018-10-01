@@ -33,9 +33,39 @@ footer{
     width: 100%;
     height:  95%;
 }
+#fullfade{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.8;
+    background: black;
+    color: black;
+}
+#menssage{
+    width: 40%;
+    height: 30%;
+    background: white;
+    position: absolute;
+    z-index: 2; 
+    margin: 15% 30%;   
+}
+#menssage_text{
+    height: 60%;
+    text-align: center;
+    padding: 2em;
+    font-size: 22px;
+}
+#message_button{
+    height: 40%;
+}
+#message_accept{
+    height: 3em;
+    width: 20%;
+    margin: 0% 40%;
+}
 #principal{
     width: 85%;
-    height:  100%;
+    height: 100%;
     float: left;
 }
 #secundario{
@@ -69,7 +99,7 @@ footer{
 #inner_manual, #inner_auto, #inner_displayed, #inner_pause{
     width: 100%;
     height: 100%;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
 }
 #control_auto{
     height: 100%;
@@ -98,7 +128,7 @@ footer{
     height: 20%;
 }
 #inner_stats, #inner_logo{
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     height: 100%;
 }
 #manual_input{
@@ -140,14 +170,14 @@ footer{
 }
 #fade_auto_display{
     width: 85%;
-    height: 42%;
+    height: 48%;
     position: absolute;
     background: black;
     opacity: 0.5;
 }
 #fade_manual_display{
     width: 64%;
-    height: 28%;
+    height: 31%;
     position: absolute;
     background: black;
     opacity: 0.5;
