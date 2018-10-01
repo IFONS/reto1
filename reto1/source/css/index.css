@@ -1,14 +1,11 @@
 body::-webkit-scrollbar{
-    width: 0;
+        width: 0;
 }
 *{
     box-sizing: border-box;
 }
 body{
     margin: 0;
-}
-header{
-    height: 10%;
 }
 footer{
     height: 5%;
@@ -24,7 +21,7 @@ footer{
 }
 .stage3{
     margin-left: 90%;
-} 
+}
 #type{
     width: 1px;
 }
@@ -34,7 +31,7 @@ footer{
 }
 #wrapper{
     width: 100%;
-    height:  85%;
+    height:  95%;
 }
 #principal{
     width: 85%;
@@ -72,7 +69,7 @@ footer{
 #inner_manual, #inner_auto, #inner_displayed, #inner_pause{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 #control_auto{
     height: 100%;
@@ -101,6 +98,64 @@ footer{
     height: 20%;
 }
 #inner_stats, #inner_logo{
-    border: 1px solid black;
-    height: 100%    ;
+    /*border: 1px solid black;*/
+    height: 100%;
+}
+#manual_input{
+    width: 80%;
+    float: left;
+}
+#buttons{
+    width: 20%;
+    float: left;
+    padding: .5em;
+    height: 100%;
+}
+#mas img, #less img{
+    width: 50%;
+    height: 50%;
+}
+#mas{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+#buttons button{
+    width: 40%;
+    height: 40%;
+    display: block;
+}
+#manual_data{
+    height: 3em;
+    width: 100%;
+}
+#accept_manual{
+    width: 20%;
+    padding: .25em;
+    margin: 0 40%;
+}
+#test{
+    height: 30%;
+    width: 100%;
+    padding: 4% 25%;
+}
+#fade_auto_display{
+    width: 85%;
+    height: 42%;
+    position: absolute;
+    background: black;
+    opacity: 0.5;
+}
+#fade_manual_display{
+    width: 64%;
+    height: 28%;
+    position: absolute;
+    background: black;
+    opacity: 0.5;
+}
+.disable{
+    display: none !important;
+}
+#switch_manauto button{
+    width: 100%;
+    height: 100%;
 }
