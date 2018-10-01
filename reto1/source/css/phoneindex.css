@@ -133,10 +133,10 @@
 	#accept_manual{
 		width: 30% !important;
 		height: 3em !important;
-		margin: 0 35%;
+		margin: 0 35% !important;
 	}
 }
-@media (max-height: 450px){
+@media (max-height: 450px) and (max-width: 900px){
 	#message_text{
 		font-size: 17px !important;
 		padding: .5em !important;
@@ -146,24 +146,18 @@
 		width: 30% !important;
 		margin: 0 35% !important;
 	}
-	#switch_manauto button{
-		overflow: hidden;
-	}
 	#manual_data{
 		height: 2em !important;
+		width: 120% !important;
 	}
 	#accept_manual{
-		height: 2em !important;
 		width: 30% !important;
+		height: 3em !important;
 		margin: 0 35% !important;
 	}
+}
+@media (max-width: 1920px) and (min-width: 1280px){
 	#buttons button{
-		width: 80% !important;
-	}
-	#switch_manauto{
-		padding: .15em !important;
-	}
-	#switch_manauto div{
-		padding: .15em !important;
+		width: 60% !important;
 	}
 }
