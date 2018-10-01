@@ -140,14 +140,14 @@ footer{
 }
 #fade_auto_display{
     width: 85%;
-    height: 42%;
+    height: 48%;
     position: absolute;
     background: black;
     opacity: 0.5;
 }
 #fade_manual_display{
     width: 64%;
-    height: 28%;
+    height: 31%;
     position: absolute;
     background: black;
     opacity: 0.5;
