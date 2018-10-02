@@ -18,12 +18,15 @@ $(document).ready(function () {
     showmsg();
 });
 $(window).resize(function () {
-    if($("#type").width()==1){
+    var focused = document.getElementById("manual_data");
+    if(document.activeElement != focused){
+        window.location.reload();
         var h = $(window).height();
         var w = $(window).width();
         $("body").height(h);
         $("body").width(w);
     }
+
 });
 function request2server(idform) {
     var data = $("#"+idform).serialize();
@@ -36,7 +39,6 @@ function request2server(idform) {
         error: function () {
             console.log('error');
         }
-
     });
     return false;
 }

@@ -191,3 +191,7 @@ footer{
     width: 100%;
     height: 100%;
 }
+#form_auto, #form_manual{
+    width: 100%;
+    height: 100%;
+}

@@ -1,4 +1,4 @@
-@media (max-width: 700px){
+@media (max-width: 600px){
 	header{
 		display: none;
 	}
@@ -121,8 +121,14 @@
 	#manual_data{
 		height: 1.5em !important;
 	}
+	#buttons{
+		width: 30%;
+	}
 	#buttons button{
-		width: 60% !important;
+		width: 100% !important;
+	}
+	#manual_input{
+		width: 70%;
 	}
 }
 @media (max-height: 900px) and (min-height: 600px){
@@ -136,7 +142,7 @@
 		margin: 0 35% !important;
 	}
 }
-@media (max-height: 450px) and (max-width: 900px){
+@media (max-height: 450px){
 	#message_text{
 		font-size: 17px !important;
 		padding: .5em !important;
@@ -159,5 +165,10 @@
 @media (max-width: 1920px) and (min-width: 1280px){
 	#buttons button{
 		width: 60% !important;
+	}
+}
+@media (max-width: 700px) and (max-height: 400px){
+	#accept_manual{
+		height: 2em !important;
 	}
 }
