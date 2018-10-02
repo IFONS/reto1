@@ -6,14 +6,20 @@
     <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery.js"></script>
-    <style type="text/css"></style>    
+    <script src="js/index.js"></script>
+    <style type="text/css"></style>
 </head>
 <body>
+    <input type="hidden" id="manu_auto" value=':="mis_datos".contador:'>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
         <div id="message_text">Se volvera a la posicion inical</div>
         <div id="message_button">
-            <button id="message_accept" onclick="closemsg()">Aceptar</button>
+            <form id="form_message" onsubmit="return closemsg(this.id)">
+                <!-- AWP_In_Variable Name='"INPUT".REARME' -->
+                <input type="hidden" name='"INPUT".REARME' value="1">
+                <button id="message_accept" type="submit">Aceptar</button>
+            </form>
         </div>
     </div>
     <div id="wrapper">
@@ -24,10 +30,18 @@
             </div>
             <div id="switch_manauto">
                 <div class="vertical_half">
-                    <button id="button_manual" onclick="showhide('auto_display','control_manual')">Manual</button>
+                    <form id="form_manual" onsubmit="return showhide('auto_display','control_manual',this.id)">
+                        <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
+                        <input type="hidden" name='"INPUT".MANU_AUTO' value="0">
+                        <button id="button_manual" type="submit">Manual</button>
+                    </form>
                 </div>
                 <div class="vertical_half">
-                    <button id="button_auto" onclick="showhide('control_manual', 'auto_display')">Auto</button>
+                    <form id="form_auto" onsubmit="return showhide('control_manual', 'auto_display',this.id)">
+                        <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
+                        <input type="hidden" name='"INPUT".MANU_AUTO' value="1">
+                        <button id="button_auto" type="submit">Auto</button>
+                    </form>
                 </div>
             </div>
             <div id="stats">
@@ -75,7 +89,28 @@
 
                         <div id="inner_auto">
                             Automatico
-                            <button>test</button>
+                            <form id="form_test" onsubmit="return request2server(this.id)">
+                                <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
+                                <input type="hidden" name='"INPUT".MANU_AUTO' value="1">
+                                <!-- AWP_In_Variable Name='"INPUT".PARO' -->
+                                <input type="hidden" name='"INPUT".PARO' value="0">
+                                <!-- AWP_In_Variable Name='"INPUT".PAUSE' -->
+                                <input type="hidden" name='"INPUT".PAUSE' value="1">
+                                <!-- AWP_In_Variable Name='"INPUT".REARME' -->
+                                <input type="hidden" name='"INPUT".REARME' value="0">
+                                <button type="submit">1</button>
+                            </form>
+                            <form id="form_test2" onsubmit="return request2server(this.id)">
+                                <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
+                                <input type="hidden" name='"INPUT".MANU_AUTO' value="0">
+                                <!-- AWP_In_Variable Name='"INPUT".PARO' -->
+                                <input type="hidden" name='"INPUT".PARO' value="1">
+                                <!-- AWP_In_Variable Name='"INPUT".PAUSE' -->
+                                <input type="hidden" name='"INPUT".PAUSE' value="0">
+                                <!-- AWP_In_Variable Name='"INPUT".REARME' -->
+                                <input type="hidden" name='"INPUT".REARME' value="1">
+                                <button type="submit">2</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -91,104 +126,4 @@
 
     </footer>
 </body>
-<script>
-    $(document).ready(function () {
-        var h = $(window).height();
-        var w = $(window).width();
-        $("body").height(h);
-        $("body").width(w);
-    	showmsg();       
-    });    
-    $(window).resize(function () {
-        if($("#type").width()==1){
-            var h = $(window).height();
-            var w = $(window).width();       
-            $("body").height(h);
-            $("body").width(w);
-        }
-    }); 
-    function showmsg(){
-        document.getElementById("fullfade").classList.remove('disable');
-        document.getElementById("message").classList.remove('disable');
-    }
-    function closemsg(){
-        document.getElementById("fullfade").classList.add('disable');
-        document.getElementById("message").classList.add('disable');
-        document.getElementById("animation_box").style.margin = "0 0 0 0";
-        document.getElementById("manual_data").value = "1";
-    }
-    function position() {
-        var x = parseInt(document.getElementById("manual_data").value);
-        if(x >= 1 && x <= 500) {
-            var margin = x * 90 / 500;
-            document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%";
-        }
-    }
-    if($("#type").width()===0){
-        $("#auto_display").hide();
-        $("#pause_continue").hide();
-        document.getElementById("fade_auto_display").classList.add('disable');
-        document.getElementById("fade_manual_display").classList.add('disable');
-        document.getElementById("fade_manual_display").classList.add('disable');
-        document.getElementById("button_manual").setAttribute("disabled","disabled");
-    }else{
-        document.getElementById("fade_manual_display").classList.add('disable');
-        document.getElementById("button_manual").setAttribute("disabled","disabled");        
-    }
-	var elo = document.getElementById("animation_box");
-	/*setInterval(function(){
-		if(elo.classList.contains("stage1")){
-			elo.classList.add("stage2");
-			elo.classList.remove("stage1");	
-		}else if(elo.classList.contains("stage2")){
-			elo.classList.add("stage3");
-			elo.classList.remove("stage2");	
-		}else if(elo.classList.contains("stage3")){
-			elo.classList.add("stage1");
-			elo.classList.remove("stage3");	
-		}
-	},2000);*/
-    function showhide(tohide, toshow){ 
-        showmsg();    
-        var chance = $("#type").width();
-        if (chance===0) {
-            var element = document.getElementById("animation");        
-            if(element.classList.contains("animation_responsive")||toshow!="auto_display"){            
-                element.classList.remove("animation_responsive"); 
-                $("#pause_continue").hide();
-                document.getElementById("button_manual").setAttribute("disabled","disabled");
-                document.getElementById("button_auto").removeAttribute("disabled");
-            }else {
-                element.classList.add("animation_responsive"); 
-                $("#pause_continue").show();
-                document.getElementById("button_manual").removeAttribute("disabled","disabled");
-                document.getElementById("button_auto").setAttribute("disabled","disabled");
-            }     
-        $("#"+tohide).hide();
-        $("#"+toshow).show();
-        } else {
-            if (toshow === "control_manual") {
-                document.getElementById("fade_manual_display").classList.add("disable");
-                document.getElementById("fade_auto_display").classList.remove("disable");
-                document.getElementById("button_manual").setAttribute("disabled","disabled");
-                document.getElementById("button_auto").removeAttribute("disabled");
-            }else {
-                document.getElementById("fade_auto_display").classList.add("disable");
-                document.getElementById("fade_manual_display").classList.remove("disable");
-                document.getElementById("button_manual").removeAttribute("disabled","disabled");
-                document.getElementById("button_auto").setAttribute("disabled","disabled");
-            }
-        }
-    }
-    function add() {
-        var data = parseInt(document.getElementById("manual_data").value);
-        if(data!==500)
-            document.getElementById("manual_data").value = data + 1;
-    }
-    function substract() {
-        var data = parseInt(document.getElementById("manual_data").value);
-        if(data!==1)
-            document.getElementById("manual_data").value = data - 1;
-    }
-</script>
 </html>
