@@ -20,7 +20,6 @@ $(document).ready(function () {
 $(window).resize(function () {
     var focused = document.getElementById("manual_data");
     if(document.activeElement != focused){
-        window.location.reload();
         var h = $(window).height();
         var w = $(window).width();
         $("body").height(h);
@@ -46,20 +45,32 @@ function showmsg(){
     document.getElementById("fullfade").classList.remove('disable');
     document.getElementById("message").classList.remove('disable');
 }
-function closemsg(idform){
-    request2server(idform);
-    document.getElementById("fullfade").classList.add('disable');
-    document.getElementById("message").classList.add('disable');
-    document.getElementById("animation_box").style.margin = "0 0 0 0";
-    document.getElementById("manual_data").value = "1";
-    return false;
-}
-function position() {
-    var x = parseInt(document.getElementById("manual_data").value);
-    if(x >= 1 && x <= 500) {
-        var margin = x * 90 / 500;
-        document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%";
-    }
+function closemsg(idform){ 
+    request2server(idform); 
+    document.getElementById("rearme").value = "0"; 
+    setTimeout(function () { 
+        request2server(idform); 
+        document.getElementById("rearme").value = "1"; 
+    },200); 
+    document.getElementById("fullfade").classList.add('disable'); 
+    document.getElementById("message").classList.add('disable'); 
+    document.getElementById("animation_box").style.margin = "0 0 0 0"; 
+    document.getElementById("manual_data").value = "1"; 
+    return false; 
+} 
+function position(idform) { 
+    request2server(idform); 
+    document.getElementById("pos_x_mm_aceptar").value = "0"; 
+    setTimeout(function () { 
+        request2server(idform); 
+        document.getElementById("pos_x_mm_aceptar").value = "1"; 
+    },200); 
+    var x = parseInt(document.getElementById("manual_data").value); 
+    if(x >= 1 && x <= 500) { 
+        var margin = x * 90 / 500; 
+        document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%"; 
+    } 
+    return false; 
 }
 function showhide(tohide, toshow,idform){
     request2server(idform);
@@ -95,3 +106,32 @@ function showhide(tohide, toshow,idform){
     }
     return false;
 }
+
+ 
+//FUNCION DE PULSADOR
+function Pulse(idPulsador, namePulsador){
+    if(document.getElementById(idPulsador).value != 1){
+        document.getElementById(idPulsador).value = 1;
+        request2serverPulsador(namePulsador, 1);
+    }else{
+        document.getElementById(idPulsador).value = 0;
+        request2serverPulsador(namePulsador, 0);
+    }
+
+
+}
+
+function request2serverPulsador(nameVariable, value) {
+    $.ajax({
+        type:"POST",
+        data:nameVariable+"="+value,
+        success: function(data){
+            console.log('sent');
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
+    return false;
+}
+

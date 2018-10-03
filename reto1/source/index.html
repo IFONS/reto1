@@ -17,7 +17,7 @@
         <div id="message_button">
             <form id="form_message" onsubmit="return closemsg(this.id)">
                 <!-- AWP_In_Variable Name='"INPUT".REARME' -->
-                <input type="hidden" name='"INPUT".REARME' value="1">
+                <input type="hidden" id="rearme" name='"INPUT".REARME' value="1">
                 <button id="message_accept" type="submit">Aceptar</button>
             </form>
         </div>
@@ -58,18 +58,28 @@
                     <div id="fade_manual_display"></div>
                     <div id="control_manual">
                         <div id="inner_manual">
-                            <div id="manual_input">
-                                <div id="test"><input id="manual_data" type="text" value="1" maxlength="3"></div>
-                                <button id="accept_manual" onclick="position()">Aceptar</button>
-                            </div>
-                            <div id="buttons">
-                                <button id="mas">
-                                    <img src="resources/plus.png" alt="">
-                                </button>
-                                <button id="less">
-                                    <img src="resources/minus.png" alt="">
-                                </button>
-                            </div>
+                            <form id="form_inner_manual" onsubmit="return position(this.id)">
+                                <div id="manual_input">
+                                    <div id="test">
+                                        <!-- AWP_In_Variable Name='"INPUT".POS_X_MM' -->
+                                        <input id="manual_data" name='"INPUT".POS_X_MM' type="text" value="1" maxlength="3">
+                                    </div>
+                                        <!-- AWP_In_Variable Name='"INPUT".POS_X_MM_ACEPTAR' -->
+                                        <button type="submit" id="accept_manual">Aceptar</button>
+                                        <input type="hidden" id="pos_x_mm_aceptar" name='"INPUT".POS_X_MM_ACEPTAR' value="1">
+                                </div>
+                            </form>
+                            <form id="form_buttonsJog" onsubmit="return false">
+                                <div id="buttons">
+                                    <!-- AWP_In_Variable Name='"INPUT".JOGWEBMAS' -->
+                                    <button type="button" id="mas" name='"INPUT".JOGWEBMAS' onmousedown="Pulse(this.id, this.name)" onmouseup="Pulse(this.id, this.name)"  value="0"><img src="resources/plus.png" alt=""></button>
+                                                                            
+                                    <!-- AWP_In_Variable Name='"INPUT".JOGWEBMENOS' -->
+                                    <button type="button" id="less" name='"INPUT".JOGWEBMENOS' onmousedown="Pulse(this.id, this.name)" onmouseup="Pulse(this.id, this.name)" value="0"><img src="resources/minus.png" alt=""
+                                        ></button>
+                                </div>
+                            </form>
+                            
                         </div>
                     </div>
                     <div id="animation" class="">
@@ -89,34 +99,50 @@
 
                         <div id="inner_auto">
                             Automatico
-                            <form id="form_test" onsubmit="return request2server(this.id)">
-                                <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
-                                <input type="hidden" name='"INPUT".MANU_AUTO' value="1">
-                                <!-- AWP_In_Variable Name='"INPUT".PARO' -->
-                                <input type="hidden" name='"INPUT".PARO' value="0">
-                                <!-- AWP_In_Variable Name='"INPUT".PAUSE' -->
-                                <input type="hidden" name='"INPUT".PAUSE' value="1">
-                                <!-- AWP_In_Variable Name='"INPUT".REARME' -->
-                                <input type="hidden" name='"INPUT".REARME' value="0">
-                                <button type="submit">1</button>
-                            </form>
-                            <form id="form_test2" onsubmit="return request2server(this.id)">
-                                <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
-                                <input type="hidden" name='"INPUT".MANU_AUTO' value="0">
-                                <!-- AWP_In_Variable Name='"INPUT".PARO' -->
-                                <input type="hidden" name='"INPUT".PARO' value="1">
-                                <!-- AWP_In_Variable Name='"INPUT".PAUSE' -->
-                                <input type="hidden" name='"INPUT".PAUSE' value="0">
-                                <!-- AWP_In_Variable Name='"INPUT".REARME' -->
-                                <input type="hidden" name='"INPUT".REARME' value="1">
-                                <button type="submit">2</button>
-                            </form>
                         </div>
                     </div>
                 </div>
                 <div id="pause_continue" class="horizontal_float horizontal_float_responsive">
                     <div id="inner_pause">
-
+                        <div class="vertical_third">
+                            <form onsubmit="return false">
+                                <div class="inner_pause_buttons">
+                                    <!-- AWP_In_Variable Name='"INPUT".PAUSE' -->
+                                    <button id="pause" name='"INPUT".PAUSE'
+                                            onmousedown="Pulse(this.id, this.name)"
+                                            onmouseup="Pulse(this.id, this.name)"></button>
+                                </div>
+                                <div class="inner_pause_labels">
+                                    <label for="pause">Pause</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="vertical_third">
+                            <form onsubmit="return false">
+                                <div class="inner_pause_buttons">
+                                    <!-- AWP_In_Variable Name='"INPUT".CONTINUAR' -->
+                                    <button id="continuar" name='"INPUT".CONTINUAR'
+                                            onmousedown="Pulse(this.id, this.name)"
+                                            onmouseup="Pulse(this.id, this.name)"></button>
+                                </div>
+                                <div class="inner_pause_labels">
+                                    <label for="continuar">Continuar</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="vertical_third">
+                            <form onsubmit="return false">
+                                <div class="inner_pause_buttons">
+                                    <!-- AWP_In_Variable Name='"INPUT".PARO' -->
+                                    <button id="paro" name='"INPUT".PARO'
+                                            onmousedown="Pulse(this.id, this.name)"
+                                            onmouseup="Pulse(this.id, this.name)"></button>
+                                </div>
+                                <div class="inner_pause_labels">
+                                    <label for="paro">Paro</label>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
