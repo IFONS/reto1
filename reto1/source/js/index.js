@@ -95,13 +95,3 @@ function showhide(tohide, toshow,idform){
     }
     return false;
 }
-function add() {
-    var data = parseInt(document.getElementById("manual_data").value);
-    if(data!==500)
-        document.getElementById("manual_data").value = data + 1;
-}
-function substract() {
-    var data = parseInt(document.getElementById("manual_data").value);
-    if(data!==1)
-        document.getElementById("manual_data").value = data - 1;
-}
