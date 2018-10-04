@@ -10,9 +10,15 @@
     <style type="text/css"></style>
 </head>
 <body>
-    <input type="hidden" id="manu_auto" value=':="INPUT".MAN_AUTO:'>
+    <input type="hidden" id="manu_auto" value=':="INPUT".MANU_AUTO:'>
     <div id="readvals">
-        <input type="hidden" id="busy" value=':="INPUT".BUSY:'>
+        <input type="hidden" id="c_posicionInput" value=':="INPUT".C_POSITION:'>
+        <input type="hidden" id="c_speedInput" value=':="INPUT".C_SPEED:'>
+        <input type="hidden" id="readyInput" value=':="INPUT".READY:'>
+        <input type="hidden" id="alarmInput" value=':="INPUT".ALARM:'>
+        <input type="hidden" id="svreInput" value=':="INPUT".SVRE:'>
+        <input type="hidden" id="busyInput" value=':="INPUT".BUSY:'>
+
     </div>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
@@ -61,7 +67,7 @@
                     <div id="fade_manual_display"></div>
                     <div id="control_manual">
                         <div id="inner_manual">
-                            <form id="form_inner_manual" onsubmit="return position(this.id)">
+                            <form id="form_inner_manual" onsubmit="return positionButton(this.id)">
                                 <div id="manual_input">
                                     <div id="test">
                                         <!-- AWP_In_Variable Name='"INPUT".POS_X_MM' -->
@@ -91,7 +97,12 @@
                 </div>
                 <div id="always_displayed" class="horizontal_float">
                     <div id="inner_displayed">
-
+                        <input id="c_posicion" type="text" name="" disabled="true" value="0">Posicion
+                        <input id="c_speed" type="text" name="" disabled="true">Speed<br/>
+                        <div class="indicadores" id="ready" value="0"></div>Preparado<br/>
+                        <div class="indicadores" id="alarm"></div>Alarma<br/>
+                        <div class="indicadores" id="svre"></div>Par Motor<br/>
+                        <div class="indicadores" id="busy"></div>EN MOVIMIENTO
                     </div>
                 </div>
             </div>

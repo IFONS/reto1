@@ -29,12 +29,14 @@ $(window).resize(function () {
 });
 setInterval(function () {
     $("#readvals").load(document.URL + " #readvals");
-    if(document.getElementById("busy").value == 1)
-        console.log(1);
-    else
-        if(document.getElementById("busy").value == 0)
-        console.log(0);
-},1000);
+    aplicarOutput("c_posicion", document.getElementById("c_posicionInput").value);
+    positionAnimation();
+    aplicarOutput("c_speed", document.getElementById("c_speedInput").value);
+    aplicarOutputButton("ready", document.getElementById("readyInput").value);
+    aplicarOutputButton("alarm", document.getElementById("alarmInput").value);
+    aplicarOutputButton("svre", document.getElementById("svreInput").value);
+    aplicarOutputButton("busy", document.getElementById("busyInput").value);
+},500);
 function request2server(idform) {
     var data = $("#"+idform).serialize();
     $.ajax({
@@ -66,17 +68,24 @@ function closemsg(idform){
     document.getElementById("manual_data").value = "1"; 
     return false; 
 } 
-function position(idform) { 
-    request2server(idform); 
-    document.getElementById("pos_x_mm_aceptar").value = "0"; 
-    setTimeout(function () { 
-        request2server(idform); 
-        document.getElementById("pos_x_mm_aceptar").value = "1"; 
-    },200); 
-    var x = parseInt(document.getElementById("manual_data").value); 
-    if(x >= 1 && x <= 500) { 
+function positionAnimation() {
+    console.log("ANIMACION "+document.getElementById("c_posicionInput").value); 
+    var x = parseInt(document.getElementById("c_posicionInput").value); 
+    if(x >= 1 && x <= 500) {     
         var margin = x * 90 / 500; 
         document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%"; 
+    } 
+    return false; 
+}
+function positionButton(idform) { 
+    var x = parseInt(document.getElementById("manual_data").value); 
+    if(x >= 1 && x <= 500) { 
+        request2server(idform); 
+        document.getElementById("pos_x_mm_aceptar").value = "0"; 
+        setTimeout(function () { 
+            request2server(idform); 
+            document.getElementById("pos_x_mm_aceptar").value = "1"; 
+        },200);  
     } 
     return false; 
 }
@@ -143,3 +152,16 @@ function request2serverPulsador(nameVariable, value) {
     return false;
 }
 
+
+
+function aplicarOutput(ID, value){
+    document.getElementById(ID).value=value;
+}
+
+function aplicarOutputButton(ID, value){
+    if (value == 1) {
+        document.getElementById(ID).style.backgroundColor = "red";
+    }else{
+        document.getElementById(ID).style.backgroundColor = "grey";
+    }
+}
