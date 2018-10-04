@@ -27,6 +27,14 @@ $(window).resize(function () {
     }
 
 });
+setInterval(function () {
+    $("#readvals").load(document.URL + " #readvals");
+    if(document.getElementById("busy").value == 1)
+        console.log(1);
+    else
+        if(document.getElementById("busy").value == 0)
+        console.log(0);
+},1000);
 function request2server(idform) {
     var data = $("#"+idform).serialize();
     $.ajax({
