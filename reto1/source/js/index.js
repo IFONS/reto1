@@ -1,3 +1,6 @@
+/**
+ * Cuando el documento esta preparado carga algunos valores.
+ */
 $(document).ready(function () {
     if(document.getElementById("manu_auto").value == 0){
         document.getElementById("button_manual").setAttribute("disabled", "disabled");
@@ -17,6 +20,9 @@ $(document).ready(function () {
     $("body").width(w);
     showmsg();
 });
+/**
+ * Cuando la ventana se reescala cambia las dimensiones del body para que la web sea responsive
+ */
 $(window).resize(function () {
     var focused = document.getElementById("manual_data");
     if(document.activeElement != focused){
@@ -27,6 +33,9 @@ $(window).resize(function () {
     }
 
 });
+/**
+ * Lectura de variables del servidor
+ */
 setInterval(function () {
     $("#readvals").load(document.URL + " #readvals");
     aplicarOutput("c_posicion", document.getElementById("c_posicionInput").value);
@@ -37,6 +46,12 @@ setInterval(function () {
     aplicarOutputButton("svre", document.getElementById("svreInput").value);
     aplicarOutputButton("busy", document.getElementById("busyInput").value);
 },500);
+
+/**
+ * Envio de datos al servidor
+ * @param id del formulario del que vienen los datos.
+ * @returns siempre falso para que la web no se recargue pero si que envien los datos.
+ */
 function request2server(idform) {
     var data = $("#"+idform).serialize();
     $.ajax({
@@ -51,10 +66,19 @@ function request2server(idform) {
     });
     return false;
 }
+/**
+ * Muestra un mensaje de alerta que inpide usar la web hata aceptarlo
+ */
 function showmsg(){
     document.getElementById("fullfade").classList.remove('disable');
     document.getElementById("message").classList.remove('disable');
 }
+
+/**
+ * Cierra el mensaje
+ * @param id del formulario a enviar
+ * @returns siempre false para que se envien los datos y no se recargue la web
+ */
 function closemsg(idform){ 
     request2server(idform); 
     document.getElementById("rearme").value = "0"; 
@@ -67,16 +91,25 @@ function closemsg(idform){
     document.getElementById("animation_box").style.margin = "0 0 0 0"; 
     document.getElementById("manual_data").value = "1"; 
     return false; 
-} 
+}
+
+/**
+ * Funcion que mueve la caja de simulacion
+ */
 function positionAnimation() {
     console.log("ANIMACION "+document.getElementById("c_posicionInput").value); 
     var x = parseInt(document.getElementById("c_posicionInput").value); 
     if(x >= 1 && x <= 500) {     
         var margin = x * 90 / 500; 
         document.getElementById("animation_box").style.margin = "0 0 0 " + (margin) + "%"; 
-    } 
-    return false; 
+    }
 }
+
+/**
+ *
+ * @param id del formulario a enviar
+ * @returns siempre false para que se envien los datos y no se recargue la web
+ */
 function positionButton(idform) { 
     var x = parseInt(document.getElementById("manual_data").value); 
     if(x >= 1 && x <= 500) { 
@@ -89,6 +122,14 @@ function positionButton(idform) {
     } 
     return false; 
 }
+
+/**
+ * Funcion que esconde y muestra elementos segun el tamaño de la pantalla y la opcion manual o automatico
+ * @param elemento a esconder
+ * @param elemento a mostrar
+ * @param formulario a enviar
+ * @returns siempre false para que se envien los datos y no se recargue la web
+ */
 function showhide(tohide, toshow,idform){
     request2server(idform);
     showmsg();
@@ -124,8 +165,11 @@ function showhide(tohide, toshow,idform){
     return false;
 }
 
- 
-//FUNCION DE PULSADOR
+/**
+ * Funcion que envia un valor en concreto sin formulario
+ * @param id del boton que ha sido pulsado
+ * @param nombre del boton que ha sido pulsado y variable a enviar al servidor
+ */
 function Pulse(idPulsador, namePulsador){
     if(document.getElementById(idPulsador).value != 1){
         document.getElementById(idPulsador).value = 1;
@@ -134,10 +178,14 @@ function Pulse(idPulsador, namePulsador){
         document.getElementById(idPulsador).value = 0;
         request2serverPulsador(namePulsador, 0);
     }
-
-
 }
 
+/**
+ * Funcion que envia una unica variable sin necesidad de formulario
+ * @param variable a enviar al servidor
+ * @param valor a enviar al servidor
+ * @returns siempre false para que se envien los datos y no se recargue la web
+ */
 function request2serverPulsador(nameVariable, value) {
     $.ajax({
         type:"POST",
@@ -151,13 +199,18 @@ function request2serverPulsador(nameVariable, value) {
     });
     return false;
 }
-
-
-
+/**
+ * Funcion que reflejara los cambios en el servidor
+ * @param id del elemento en que se reflejaran los cambios en el servidor
+ * @param valor del ervidor
+ */
 function aplicarOutput(ID, value){
     document.getElementById(ID).value=value;
 }
 
+/**
+ * Igual que la anterior para botones
+ */
 function aplicarOutputButton(ID, value){
     if (value == 1) {
         document.getElementById(ID).style.backgroundColor = "red";
