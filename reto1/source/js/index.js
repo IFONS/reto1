@@ -218,3 +218,36 @@ function aplicarOutputButton(ID, value){
         document.getElementById(ID).style.backgroundColor = "grey";
     }
 }
+
+
+//FUNCION PARA LOS CICLOS
+
+function ciclos(uno)
+{
+    var cUnico=document.getElementById("cUnico");
+    var nCiclos=document.getElementById("nCiclos");
+    var cContinuo=document.getElementById("cContinuos");
+    if(uno==1)
+    {
+
+        request2serverPulsador(cContinuo.name, 0);
+        request2serverPulsador(nCiclos.name,1);
+        request2serverPulsador(cUnico.name, 1);
+
+    }
+    else
+    {
+
+        if(nCiclos.value<0 || isNaN(nCiclos.value))
+        {
+            alert("Introduceme solo numeros positivos")
+        }
+        else
+        {
+            request2serverPulsador(cUnico.name, 0);
+            request2serverPulsador(nCiclos.name, nCiclos.value);
+            request2serverPulsador(cContinuo.name, 1);
+        }
+
+    }
+}
