@@ -179,7 +179,6 @@ function Pulse(idPulsador, namePulsador){
         request2serverPulsador(namePulsador, 0);
     }
 }
-
 /**
  * Funcion que envia una unica variable sin necesidad de formulario
  * @param variable a enviar al servidor
@@ -227,11 +226,12 @@ function ciclos(uno)
     var cUnico=document.getElementById("cUnico");
     var nCiclos=document.getElementById("nCiclos");
     var cContinuo=document.getElementById("cContinuos");
+    //cambiar a 0
     if(uno==1)
     {
 
         request2serverPulsador(cContinuo.name, 0);
-        request2serverPulsador(nCiclos.name,1);
+        request2serverPulsador(nCiclos.name,0);
         request2serverPulsador(cUnico.name, 1);
 
     }
@@ -250,4 +250,11 @@ function ciclos(uno)
         }
 
     }
+}
+function resetRow(className, idRow) {
+    var hiddens = document.getElementsByClassName(className);
+    for (var x = 0; x < hiddens.length; x++){
+        hiddens[x].value = 0;
+    }
+    document.getElementById(idRow).value = 1;
 }
