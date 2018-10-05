@@ -113,6 +113,71 @@
 
                         <div id="inner_auto">
                             Automatico
+
+                            
+                            <form id="ciclosFormu">
+                                <div id="botones">
+                                    <!-- AWP_In_Variable Name='"INPUT".C_CONTINUO' -->
+                                    <button type="button" name='"INPUT".C_CONTINUO' id="cContinuos" value="1" onclick="ciclos()">
+                                        CICLO CONTINUO
+                                    </button>
+                                    <!-- AWP_In_Variable Name='"INPUT".C_UNICO' -->
+                                    <button type="button" name='"INPUT".C_UNICO' id="cUnico" value="1" onclick="ciclos(1)">
+                                        CICLO UNICO
+                                    </button>
+                                </div>
+                                <div id="ciclos">
+                                    <div id="numCiclos">
+                                        <p>NUMERO CICLOS</p>
+                                        <!-- AWP_In_Variable Name='"INPUT".N_CICLOS' -->
+                                        <input type="number" name='"INPUT".N_CICLOS' id="nCiclos" min="0">
+                                    </div>
+                                    <div id="rCiclos">
+                                        <p>CICLOS REALIZADOS</p>
+                                        <!-- AWP_In_Variable Name=':="OUTPUT".C_REALIZADOS:' -->
+                                        <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".C_REALIZADOS:' disabled>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="pos">
+                                <table border="1" id="tablaFunciones">
+                                    <tr>
+                                        <th>
+                                            POSICION PREDETERMINADA
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <form name="apilar" id="apilar" method="post">
+                                            <th>APILAR</th>
+                                            <td><input type="submit" name="enviar" id="enviar1" value="1"></td>
+                                            <td><input type="submit" name="enviar" id="enviar2" value="2"></td>
+                                            <td><input type="submit" name="enviar" id="enviar3" value="3"></td>
+                                            <td><input type="submit" name="enviar" id="enviar4" value="4"></td>
+                                        </form>
+                                    </tr>
+                                    <tr>
+                                        <form name="apilar" id="empaquetar" method="post">
+                                            <th>EMPAQUETAR</th>
+                                            <td><input type="submit" name="empaquetar" id="empaquetar1" value="1"></td>
+                                            <td><input type="submit" name="empaquetar" id="empaquetar2" value="2"></td>
+                                            <td><input type="submit" name="empaquetar" id="empaquetar3" value="3"></td>
+                                            <td><input type="submit" name="empaquetar" id="empaquetar4" value="4"></td>
+                                        </form>
+                                    </tr>
+                                    <tr>
+                                        <form name="apilar" id="etiquetar" method="post">
+                                            <th>ETIQUETAR</th>
+                                            <td><input type="submit" name="etiquetar" id="etiquetar1" value="1"></td>
+                                            <td><input type="submit" name="etiquetar" id="etiquetar2" value="2"></td>
+                                            <td><input type="submit" name="etiquetar" id="etiquetar3" value="3"></td>
+                                        </form>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
