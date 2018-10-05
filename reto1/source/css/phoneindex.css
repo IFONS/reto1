@@ -116,6 +116,29 @@
 		width: 25% !important;
 		height: 1.7em !important;
 	}
+	.vertical_third{
+		width: 100% !important;
+		height: 33.33% !important;
+		float: right !important;
+		padding: 0 !important;
+	}
+	.inner_pause_buttons{
+		width: 30% !important;
+		height: 100% !important;
+	}
+	#inner_pause button {
+		width: 80% !important;
+		height: 60% !important;
+	}
+	#inner_pause_responsive{
+		width: 30% !important;
+		height: 50% !important;
+		float: right;
+		margin-top: 1%;
+	}
+	.inner_pause_labels{
+		width: 70% !important;
+	}
 }
 @media(min-width: 700px) and (max-width: 1080px){
 	#manual_data{
