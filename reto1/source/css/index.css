@@ -224,8 +224,6 @@ footer{
 .inner_pause_labels{
     padding-top: 3%;
 }
-
-
 #form_auto, #form_manual{
     width: 100%;
     height: 100%;
@@ -236,4 +234,8 @@ footer{
     width: 5%;
     height: 5%;
     float: left;
+}
+#inner_pause_responsive{
+    width: 100%;
+    height: 100%;
 }
