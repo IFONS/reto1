@@ -147,29 +147,73 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="apilar" method="post">
+                                        <form id="apilar" onsubmit="return request2server(this.id)">
                                             <th>APILAR</th>
-                                            <td><input type="submit" name="enviar" id="enviar1" value="1"></td>
-                                            <td><input type="submit" name="enviar" id="enviar2" value="2"></td>
-                                            <td><input type="submit" name="enviar" id="enviar3" value="3"></td>
-                                            <td><input type="submit" name="enviar" id="enviar4" value="4"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB0' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB0' id="enviar1" value="0">
+                                                <button type="submit" onclick="resetRow('row1','enviar1')">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB1' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB1' id="enviar2" value="0">
+                                                <button type="submit" onclick="resetRow('row1','enviar2')">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB2' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB2' id="enviar3" value="0">
+                                                <button type="submit" onclick="resetRow('row1','enviar3')">3</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB3' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB3' id="enviar4" value="0">
+                                                <button type="submit" onclick="resetRow('row1','enviar4')">4</button>
+                                            </td>
                                         </form>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="empaquetar" method="post">
+                                        <form id="empaquetar" onsubmit="return request2server(this.id)">
                                             <th>EMPAQUETAR</th>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar1" value="1"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar2" value="2"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar3" value="3"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar4" value="4"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB4' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB4' id="empaquetar1" value="0">
+                                                <button type="submit" onclick="resetRow('row2','empaquetar1')">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB5' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB5' id="empaquetar2" value="0">
+                                                <button type="submit" onclick="resetRow('row2','empaquetar2')">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB6' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB6' id="empaquetar3" value="0">
+                                                <button type="submit" onclick="resetRow('row2','empaquetar3')">3</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB7' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB7' id="empaquetar4" value="0">
+                                                <button type="submit" onclick="resetRow('row2','empaquetar4')">4</button>
+                                            </td>
                                         </form>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="etiquetar" method="post">
+                                        <form id="etiquetar" onsubmit="return request2server(this.id)">
                                             <th>ETIQUETAR</th>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar1" value="1"></td>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar2" value="2"></td>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar3" value="3"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB8' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB8' id="etiquetar1" value="0">
+                                                <button type="submit" onclick="resetRow('row3','etiquetar1')">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB9' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB9' id="etiquetar2" value="0">
+                                                <button type="submit" onclick="resetRow('row3','etiquetar2')">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB10' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB10' id="etiquetar3" value="0">
+                                                <button type="submit" onclick="resetRow('row3','etiquetar3')">3</button>
+                                            </td>
                                         </form>
                                     </tr>
                                 </table>
