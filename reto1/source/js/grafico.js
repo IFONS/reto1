@@ -23,13 +23,14 @@ function drawChart() {
     for (var x = 0; x < hiddens.length; x++){
         data2.addRows([[hiddens[x].name,parseInt(hiddens[x].value)]]);
     }
-
     //OPCIONES DE TAMAÑO DEL GRAFICO, SE PUEDEN MOVER A CSS SIN PROBLEMAS AUNQUE NO SE COMO
     // Set chart options
+    var h = $("#chart_div").height();
+    var w = $("#chart_div").width();
     var options = {'title':'Estadisticas de uso:',
         pieHole:0.3, // ESTO ES PARA METERLE RADIO AL GRAFICO, SIN ESTO EL GRAFICO SERIA UN CIRCULO, NO UN DONUT
-        'width':400,
-        'height':300};
+        'width':w,
+        'height':h};
 
     //ESTO DE AQUI DIBUJA EL GRAFICO CUANDO TODOS LOS DATOS DE ARRIBA ESTAN LISTOS
     // Instantiate and draw our chart, passing in some options.

@@ -45,7 +45,7 @@ setInterval(function () {
     aplicarOutputButton("alarm", document.getElementById("alarmInput").value);
     aplicarOutputButton("svre", document.getElementById("svreInput").value);
     aplicarOutputButton("busy", document.getElementById("busyInput").value);
-},500);
+},3000);
 
 /**
  * Envio de datos al servidor
