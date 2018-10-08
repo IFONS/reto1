@@ -251,6 +251,8 @@ function ciclos(uno)
 
     }
 }
+
+//Esto es para el formulario de apilar y demas
 function resetRow(className, idRow) {
     var hiddens = document.getElementsByClassName(className);
     for (var x = 0; x < hiddens.length; x++){
