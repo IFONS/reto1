@@ -3,6 +3,7 @@ body::-webkit-scrollbar{
 }
 *{
     box-sizing: border-box;
+    font-family: "Arial";
 }
 body{
     margin: 0;
@@ -45,7 +46,6 @@ footer{
 #message{
     width: 40%;
     height: 30%;
-    background: white;
     position: absolute;
     z-index: 2;
     margin: 15% 30%;   
@@ -55,14 +55,18 @@ footer{
     text-align: center;
     padding: 2em;
     font-size: 22px;
+    color: white;
+    font-family: "Impact";
 }
 #message_button{
     height: 40%;
 }
 #message_accept{
     height: 3em;
-    width: 20%;
-    margin: 0% 40%;
+    margin: 0% 38%;
+    cursor: pointer;
+    border-radius: 12px;
+    background-color: #66ffff;
 }
 #principal{
     width: 85%;
@@ -83,7 +87,7 @@ footer{
     height: 50%;
 }
 .horizontal_float{
-    height: 100%;
+    height: 95%;
     float: left;
 }
 #manual_display, #auto_display{
@@ -100,7 +104,22 @@ footer{
 #inner_manual, #inner_auto, #inner_displayed, #inner_pause{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px dashed red;
+    background-color: #00A1F1;
+}
+
+#inner_auto p{
+    display: inline;
+    padding-top: 10%;
+}
+
+#tablaFunciones{
+    float: left;
+    display: inline;
+}
+
+#inner_auto{
+    padding: 2% 0% 2% 2%;
 }
 #control_auto{
     height: 100%;
@@ -122,13 +141,17 @@ footer{
 #logo{
     height: 20%;
 }
+
+#logo img {
+    width: 70%;
+}
 #switch_manauto{
     height: 60%;
 }
 #stats{
     height: 20%;
 }
-#inner_stats, #inner_logo{
+#inner_stats{
     border: 1px solid black;
     height: 100%;
 }
@@ -150,10 +173,16 @@ footer{
     margin-bottom: 5%;
     margin-top: 5%;
 }
+.div_title{
+    border:dashed 1px red;
+    background-color: #00A1F1;
+    color: white;
+}
 #buttons button{
     width: 40%;
     height: 40%;
     display: block;
+    border-radius: 12px;
 }
 #manual_data{
     height: 3em;
@@ -191,6 +220,7 @@ footer{
 #switch_manauto button{
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 #form_auto, #form_manual{
     width: 100%;

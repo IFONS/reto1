@@ -3,6 +3,7 @@
 <head>
     <title>BatCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery.js"></script>
@@ -27,12 +28,12 @@
     </div>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
-        <div id="message_text">Se volvera a la posicion inical</div>
+        <div id="message_text">SE VOLVERÁ A LA POSICIÓN INICIAL</div>
         <div id="message_button">
             <form id="form_message" onsubmit="return closemsg(this.id)">
                 <!-- AWP_In_Variable Name='"INPUT".REARME' -->
                 <input type="hidden" id="rearme" name='"INPUT".REARME' value="1">
-                <button id="message_accept" type="submit">Aceptar</button>
+                <button id="message_accept" type="submit">ACEPTAR</button>
             </form>
         </div>
     </div>
@@ -40,21 +41,21 @@
         <input id="type" type="hidden" value="">
         <div id="secundario">
             <div id="logo">
-                <div id="inner_logo">test</div>
+                <div id="inner_logo"><img src="img/logo.png"></div>
             </div>
             <div id="switch_manauto">
                 <div class="vertical_half">
                     <form id="form_manual" onsubmit="return showhide('auto_display','control_manual',this.id)">
                         <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
                         <input type="hidden" name='"INPUT".MANU_AUTO' value="0">
-                        <button id="button_manual" type="submit">Manual</button>
+                        <button id="button_manual" type="submit" >MANUAL</button>
                     </form>
                 </div>
                 <div class="vertical_half">
                     <form id="form_auto" onsubmit="return showhide('control_manual', 'auto_display',this.id)">
                         <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
                         <input type="hidden" name='"INPUT".MANU_AUTO' value="1">
-                        <button id="button_auto" type="submit">Auto</button>
+                        <button id="button_auto" type="submit">AUTO</button>
                     </form>
                 </div>
             </div>
@@ -76,10 +77,12 @@
                 <div  id="manual_display" class="horizontal_float">
                     <div id="fade_manual_display"></div>
                     <div id="control_manual">
+                        <span id="span_manual" class="div_title">MANUAL</span>
                         <div id="inner_manual">
                             <form id="form_inner_manual" onsubmit="return positionButton(this.id)">
                                 <div id="manual_input">
                                     <div id="test">
+                                        <p>POSICIÓN:</p>
                                         <!-- AWP_In_Variable Name='"INPUT".POS_X_MM' -->
                                         <input id="manual_data" name='"INPUT".POS_X_MM' type="text" value="1" maxlength="3">
                                     </div>
@@ -106,6 +109,7 @@
                     </div>
                 </div>
                 <div id="always_displayed" class="horizontal_float">
+                    <span id="span_manual" class="div_title">INDICADORES</span>
                     <div id="inner_displayed">
                         <input id="c_posicion" type="text" name="" disabled="true" value="0">Posicion
                         <input id="c_speed" type="text" name="" disabled="true">Speed<br/>
@@ -120,9 +124,8 @@
                 <div  id="auto_display" class="horizontal_float horizontal_float_responsive">
                     <div id="fade_auto_display"></div>
                     <div id="control_auto">
-
+                        <span id="span_auto" class="div_title">AUTOMÁTICO</span>
                         <div id="inner_auto">
-                            Automatico
 
                             
                             <form id="ciclosFormu">
@@ -235,6 +238,7 @@
                     </div>
                 </div>
                 <div id="pause_continue" class="horizontal_float horizontal_float_responsive">
+                    <span id="span_manual" class="div_title">INDICADORES</span>
                     <div id="inner_pause">
                         <div id="inner_pause_responsive">
                             <div class="vertical_third">
