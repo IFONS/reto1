@@ -142,7 +142,7 @@ footer{
     height: 20%;
 }
 
-#logo img {
+#logo img, #stats img {
     width: 70%;
 }
 #switch_manauto{
@@ -152,7 +152,6 @@ footer{
     height: 20%;
 }
 #inner_stats{
-    border: 1px solid black;
     height: 100%;
 }
 #manual_input{
@@ -277,6 +276,7 @@ footer{
     bottom: 100%;
     right: 100%;
     padding: 0;
+    background: #00A1F1;
 }
 #chart_div{
     width: 100%;
@@ -316,4 +316,10 @@ footer{
     margin-bottom: 5px;
     cursor: pointer;
     padding: 0;
+}
+#graph img{
+    display: none;
+}
+#animation{
+    margin: 2% 0;
 }

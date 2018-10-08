@@ -1,4 +1,7 @@
 @media (max-width: 600px){
+	body{
+		font-size: 13px !important;
+	}
 	header{
 		display: none;
 	}
@@ -92,6 +95,7 @@
 	}
 	#animation{
 		height: 30% !important;
+		margin: 5% 0;
 	}
 	.horizontal_float_responsive{
 		width: 100% !important;
@@ -139,6 +143,35 @@
 	.inner_pause_labels{
 		width: 70% !important;
 	}
+	#chart_div{
+		display: none;
+	}
+	#test p{
+		margin: 0;
+	}
+	#pos{
+		margin: 65% 1%;
+		width: 90%;
+	}
+	#tablaFunciones tr{
+		border-top: 1px solid red;
+		border-bottom: 1px solid red;
+	}
+	#botones button{
+		margin: 0 10% 5% 5%;
+	}
+	#cContinuos{
+		float: left;
+	}
+	#cUnico{
+		float: right;
+	}
+	#numCiclos{
+		margin-bottom: 5%;
+	}
+	#graph{
+		display: none;
+	}
 }
 @media(min-width: 700px) and (max-width: 1080px){
 	#manual_data{
@@ -156,14 +189,15 @@
 }
 @media (max-height: 900px) and (min-height: 600px){
 	#manual_data{
-		height: 2em !important;
+		height: 1.5em !important;
 		width: 120% !important;
 	}
 	#accept_manual{
 		width: 30% !important;
-		height: 3em !important;
+		height: 2em !important;
 		margin: 0 35% !important;
 	}
+
 }
 @media (max-height: 450px){
 	#message_text{
@@ -184,10 +218,16 @@
 		height: 3em !important;
 		margin: 0 35% !important;
 	}
+	#chart_div{
+		display: none;
+	}
 }
 @media (max-width: 1920px) and (min-width: 1280px){
 	#buttons button{
 		width: 60% !important;
+	}
+	#inner_stats img{
+		display: none;
 	}
 }
 @media (max-width: 700px) and (max-height: 400px){

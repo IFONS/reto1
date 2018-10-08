@@ -30,8 +30,9 @@ $(window).resize(function () {
         var w = $(window).width();
         $("body").height(h);
         $("body").width(w);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
     }
-
 });
 /**
  * Lectura de variables del servidor
