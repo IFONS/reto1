@@ -229,7 +229,8 @@ function ciclos(uno)
     //cambiar a 0
     if(uno==1)
     {
-
+        /*nCiclos.setAttribute("disabled","disabled");
+        cContinuo.setAttribute("disabled","disabled");*/
         request2serverPulsador(cContinuo.name, 0);
         request2serverPulsador(nCiclos.name,0);
         request2serverPulsador(cUnico.name, 1);
@@ -244,6 +245,9 @@ function ciclos(uno)
         }
         else
         {
+
+            /*nCiclos.removeAttribute("disabled");
+            cContinuo.removeAttribute("disabled");*/
             request2serverPulsador(cUnico.name, 0);
             request2serverPulsador(nCiclos.name, nCiclos.value);
             request2serverPulsador(cContinuo.name, 1);
@@ -256,9 +260,11 @@ function resetRow(className, idRow, buttonClass, idBlock) {
     var buttons = document.getElementsByClassName(buttonClass);
     for (var x = 0; x < hiddens.length; x++){
         hiddens[x].value = 0;
-        buttons[x].removeAttribute("disabled")
+        buttons[x].removeAttribute("disabled");
+        buttons[x].style.background = "none";
     }
-    document.getElementById(idBlock).setAttribute("disabled","disabled")
+    document.getElementById(idBlock).style.background = "red";
+    document.getElementById(idBlock).setAttribute("disabled","disabled");
     document.getElementById(idRow).value = 1;
 }
 function expand_graph() {
