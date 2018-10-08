@@ -9,7 +9,7 @@
     <script src="js/index.js"></script>
     <style type="text/css"></style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="js/graphic.js"></script>
+    <script src="js/grafico.js"></script>
 
 </head>
 <body>
@@ -21,6 +21,9 @@
         <input type="hidden" id="alarmInput" value=':="INPUT".ALARM:'>
         <input type="hidden" id="svreInput" value=':="INPUT".SVRE:'>
         <input type="hidden" id="busyInput" value=':="INPUT".BUSY:'>
+        <input type="hidden" class="dGrafico" name='MARCHA_TIME:' id="tMarcha" value=':="OUTPUT".MARCHA_TIME:'>
+        <input type="hidden" class="dGrafico" name='EMERGENCIA_TIME:' id="tEmergencia" value=':="OUTPUT".EMERGENCIA_TIME:'>
+        <input type="hidden" class="dGrafico" name='CICLOS_TOTAL:' id="tCiclos" value=':="OUTPUT".CICLOS_TOTAL:'>
     </div>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
