@@ -251,7 +251,7 @@ function ciclos(uno)
 
     }
 }
-function resetRow(className, idRow) {
+function resetRow(className, idRow,className, idBlock) {
     var hiddens = document.getElementsByClassName(className);
     var buttons = document.getElementsByClassName(buttonClass);
     for (var x = 0; x < hiddens.length; x++){
