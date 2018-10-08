@@ -40,6 +40,7 @@ footer{
     opacity: 0.8;
     background: black;
     color: black;
+    z-index: 2;
 }
 #message{
     width: 40%;
@@ -238,4 +239,51 @@ footer{
 #inner_pause_responsive{
     width: 100%;
     height: 100%;
+}
+#graph{
+    height: 100%;
+    background: black;
+    transition: padding .5s;
+    bottom: 100%;
+    right: 100%;
+    padding: 0;
+}
+#chart_div{
+    width: 100%;
+    height: 100%;
+    padding: 0 !important;
+    background: white;
+}
+#chart_div>div{
+    padding: 0;
+}
+#chart_div>div>div>div{
+    padding: 0;
+}
+#close_graph{
+    width: 3% !important;
+    height: 6%;
+    position: absolute;
+    display: none;
+    background: green !important;
+    z-index: 1;
+    right: 5em;
+    transition: all .5s;
+}
+.expanded{
+    transition: all .5s;
+    position: absolute;
+    bottom: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    z-index: 1;
+    padding: 5em !important;
+}
+#close_graph div{
+    width: 100%;
+    height: 5px;
+    background: black;
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 0;
 }

@@ -8,6 +8,9 @@
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
     <style type="text/css"></style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/graphic.js"></script>
+
 </head>
 <body>
     <input type="hidden" id="manu_auto" value=':="INPUT".MANU_AUTO:'>
@@ -18,7 +21,6 @@
         <input type="hidden" id="alarmInput" value=':="INPUT".ALARM:'>
         <input type="hidden" id="svreInput" value=':="INPUT".SVRE:'>
         <input type="hidden" id="busyInput" value=':="INPUT".BUSY:'>
-
     </div>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
@@ -55,9 +57,14 @@
             </div>
             <div id="stats">
                 <div id="inner_stats">
-                    <!--<div id="magic" class="magic" onclick="swap()">
-                        <div id="txt_graphs">GRAPHS</div>
-                    </div>-->
+                    <div id="graph" onclick="expand_graph()">
+                        <div id="close_graph" onclick="close_graph()">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div id="chart_div"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,8 +141,7 @@
                                     </div>
                                     <div id="rCiclos">
                                         <p>CICLOS REALIZADOS</p>
-                                        <!-- AWP_In_Variable Name=':="OUTPUT".C_REALIZADOS:' -->
-                                        <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".C_REALIZADOS:' disabled>
+                                        <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".CV_COUNT1:' disabled>
                                     </div>
                                 </div>
                             </form>
@@ -152,22 +158,22 @@
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB0' -->
                                                 <input type="hidden" class="row1" name='"INPUT".WEB0' id="enviar1" value="0">
-                                                <button type="submit" onclick="resetRow('row1','enviar1')">1</button>
+                                                <button type="submit" id="rb1" class="row1_button" onclick="resetRow('row1','enviar1',this.className,this.id)">1</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB1' -->
                                                 <input type="hidden" class="row1" name='"INPUT".WEB1' id="enviar2" value="0">
-                                                <button type="submit" onclick="resetRow('row1','enviar2')">2</button>
+                                                <button type="submit" id="rb2" class="row1_button" onclick="resetRow('row1','enviar2',this.className,this.id)">2</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB2' -->
                                                 <input type="hidden" class="row1" name='"INPUT".WEB2' id="enviar3" value="0">
-                                                <button type="submit" onclick="resetRow('row1','enviar3')">3</button>
+                                                <button type="submit" id="rb3" class="row1_button" onclick="resetRow('row1','enviar3',this.className,this.id)">3</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB3' -->
                                                 <input type="hidden" class="row1" name='"INPUT".WEB3' id="enviar4" value="0">
-                                                <button type="submit" onclick="resetRow('row1','enviar4')">4</button>
+                                                <button type="submit" id="rb4" class="row1_button" onclick="resetRow('row1','enviar4',this.className,this.id)">4</button>
                                             </td>
                                         </form>
                                     </tr>
@@ -177,22 +183,22 @@
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB4' -->
                                                 <input type="hidden" class="row2" name='"INPUT".WEB4' id="empaquetar1" value="0">
-                                                <button type="submit" onclick="resetRow('row2','empaquetar1')">1</button>
+                                                <button type="submit" id="rb5" class="row2_button" onclick="resetRow('row2','empaquetar1',this.className,this.id)">1</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB5' -->
                                                 <input type="hidden" class="row2" name='"INPUT".WEB5' id="empaquetar2" value="0">
-                                                <button type="submit" onclick="resetRow('row2','empaquetar2')">2</button>
+                                                <button type="submit" id="rb6" class="row2_button" onclick="resetRow('row2','empaquetar2',this.className,this.id)">2</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB6' -->
                                                 <input type="hidden" class="row2" name='"INPUT".WEB6' id="empaquetar3" value="0">
-                                                <button type="submit" onclick="resetRow('row2','empaquetar3')">3</button>
+                                                <button type="submit" id="rb7" class="row2_button" onclick="resetRow('row2','empaquetar3',this.className,this.id)">3</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB7' -->
                                                 <input type="hidden" class="row2" name='"INPUT".WEB7' id="empaquetar4" value="0">
-                                                <button type="submit" onclick="resetRow('row2','empaquetar4')">4</button>
+                                                <button type="submit" id="rb8" class="row2_button" onclick="resetRow('row2','empaquetar4',this.className,this.id)">4</button>
                                             </td>
                                         </form>
                                     </tr>
@@ -202,17 +208,17 @@
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB8' -->
                                                 <input type="hidden" class="row3" name='"INPUT".WEB8' id="etiquetar1" value="0">
-                                                <button type="submit" onclick="resetRow('row3','etiquetar1')">1</button>
+                                                <button type="submit" id="rb9" class="row3_button" onclick="resetRow('row3','etiquetar1',this.className,this.id)">1</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB9' -->
                                                 <input type="hidden" class="row3" name='"INPUT".WEB9' id="etiquetar2" value="0">
-                                                <button type="submit" onclick="resetRow('row3','etiquetar2')">2</button>
+                                                <button type="submit" id="rb10" class="row3_button" onclick="resetRow('row3','etiquetar2',this.className,this.id)">2</button>
                                             </td>
                                             <td>
                                                 <!-- AWP_In_Variable Name='"INPUT".WEB10' -->
                                                 <input type="hidden" class="row3" name='"INPUT".WEB10' id="etiquetar3" value="0">
-                                                <button type="submit" onclick="resetRow('row3','etiquetar3')">3</button>
+                                                <button type="submit" id="rb11" class="row3_button" onclick="resetRow('row3','etiquetar3',this.className,this.id)">3</button>
                                             </td>
                                         </form>
                                     </tr>

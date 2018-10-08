@@ -251,12 +251,47 @@ function ciclos(uno)
 
     }
 }
-
-//Esto es para el formulario de apilar y demas
 function resetRow(className, idRow) {
     var hiddens = document.getElementsByClassName(className);
+    var buttons = document.getElementsByClassName(buttonClass);
     for (var x = 0; x < hiddens.length; x++){
         hiddens[x].value = 0;
+        buttons[x].removeAttribute("disabled")
     }
+    document.getElementById(idBlock).setAttribute("disabled","disabled")
     document.getElementById(idRow).value = 1;
+}
+function expand_graph() {
+    var h = $(window).height();
+    var w = $(window).width();
+    var el = document.getElementById("graph");
+    if (!el.classList.contains("closed")){
+        el.classList.add("expanded");
+        el.style.width = w+"px";
+        el.style.height = h+"px";
+        $("#chart_div").fadeOut();
+        $("#chart_div").load(document.URL + " #chart_div");
+        $("#close_graph").fadeIn();
+        document.getElementById("close_graph").classList.add("close_graph");
+        setTimeout(function () {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            $("#chart_div").fadeIn(500);
+        },400);
+    }
+    el.classList.remove("closed");
+}
+function close_graph(){
+    var el = document.getElementById("graph");
+    el.classList.remove("expanded");
+    el.removeAttribute("style");
+    el.classList.add("closed");
+    $("#chart_div").fadeOut(1);
+    $("#close_graph").fadeOut(1);
+    document.getElementById("close_graph").classList.remove("close_graph");
+    setTimeout(function () {
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        $("#chart_div").fadeIn(400);
+    },400);
 }
