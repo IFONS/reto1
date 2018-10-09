@@ -22,6 +22,7 @@
         <input type="hidden" id="alarmInput" value=':="INPUT".ALARM:'>
         <input type="hidden" id="svreInput" value=':="INPUT".SVRE:'>
         <input type="hidden" id="busyInput" value=':="INPUT".BUSY:'>
+        <input type="hidden" id="messageInput" value=':="OUTPUT".MENSAJE:'>
         <input type="hidden" class="dGrafico" name='MARCHA_TIME:' id="tMarcha" value=':="OUTPUT".MARCHA_TIME:'>
         <input type="hidden" class="dGrafico" name='EMERGENCIA_TIME:' id="tEmergencia" value=':="OUTPUT".EMERGENCIA_TIME:'>
         <input type="hidden" class="dGrafico" name='CICLOS_TOTAL:' id="tCiclos" value=':="OUTPUT".CICLOS_TOTAL:'>
@@ -33,6 +34,8 @@
             <form id="form_message" onsubmit="return closemsg(this.id)">
                 <!-- AWP_In_Variable Name='"INPUT".REARME' -->
                 <input type="hidden" id="rearme" name='"INPUT".REARME' value="1">
+                <!-- AWP_In_Variable Name='"OUTPUT".MENSAJE' -->
+                <input type="hidden" id="message_reset" name='"OUTPUT".MENSAJE' value="0">
                 <button id="message_accept" type="submit">ACEPTAR</button>
             </form>
         </div>

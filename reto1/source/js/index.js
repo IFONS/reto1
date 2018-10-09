@@ -46,7 +46,9 @@ setInterval(function () {
     aplicarOutputButton("alarm", document.getElementById("alarmInput").value);
     aplicarOutputButton("svre", document.getElementById("svreInput").value);
     aplicarOutputButton("busy", document.getElementById("busyInput").value);
-},3000);
+    if(document.getElementById("messageInput").value == 1)
+        showmsg();
+},500);
 
 /**
  * Envio de datos al servidor
@@ -80,7 +82,8 @@ function showmsg(){
  * @param id del formulario a enviar
  * @returns siempre false para que se envien los datos y no se recargue la web
  */
-function closemsg(idform){ 
+function closemsg(idform){
+    document.getElementById("messageInput").value = 0;
     request2server(idform); 
     document.getElementById("rearme").value = "0"; 
     setTimeout(function () { 
@@ -161,6 +164,9 @@ function showhide(tohide, toshow,idform){
             document.getElementById("fade_manual_display").classList.remove("disable");
             document.getElementById("button_manual").removeAttribute("disabled","disabled");
             document.getElementById("button_auto").setAttribute("disabled","disabled");
+            fakeClick("rb1");
+            fakeClick("rb5");
+            fakeClick("rb9");
         }
     }
     return false;
@@ -265,7 +271,9 @@ function resetRow(className, idRow, buttonClass, idBlock) {
         buttons[x].style.background = "none";
     }
     document.getElementById(idBlock).style.background = "red";
-    document.getElementById(idBlock).setAttribute("disabled","disabled");
+    setTimeout(function () {
+        document.getElementById(idBlock).setAttribute("disabled","disabled");
+    },500);
     document.getElementById(idRow).value = 1;
 }
 function expand_graph() {
@@ -301,4 +309,7 @@ function close_graph(){
         google.charts.setOnLoadCallback(drawChart);
         $("#chart_div").fadeIn(400);
     },400);
+}
+function fakeClick(idBoton) {
+    $("#"+idBoton).click();
 }
