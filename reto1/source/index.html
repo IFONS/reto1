@@ -3,11 +3,16 @@
 <head>
     <title>BatCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
     <style type="text/css"></style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/grafico.js"></script>
+
 </head>
 <body>
     <input type="hidden" id="manu_auto" value=':="INPUT".MANU_AUTO:'>
@@ -18,16 +23,21 @@
         <input type="hidden" id="alarmInput" value=':="INPUT".ALARM:'>
         <input type="hidden" id="svreInput" value=':="INPUT".SVRE:'>
         <input type="hidden" id="busyInput" value=':="INPUT".BUSY:'>
-
+        <input type="hidden" id="messageInput" value=':="OUTPUT".MENSAJE:'>
+        <input type="hidden" class="dGrafico" name='MARCHA_TIME:' id="tMarcha" value=':="OUTPUT".MARCHA_TIME:'>
+        <input type="hidden" class="dGrafico" name='EMERGENCIA_TIME:' id="tEmergencia" value=':="OUTPUT".EMERGENCIA_TIME:'>
+        <input type="hidden" class="dGrafico" name='CICLOS_TOTAL:' id="tCiclos" value=':="OUTPUT".CICLOS_TOTAL:'>
     </div>
     <div id="fullfade" class="disable"></div>
     <div id="message" class="disable">
-        <div id="message_text">Se volvera a la posicion inical</div>
+        <div id="message_text">SE VOLVERÁ A LA POSICIÓN INICIAL</div>
         <div id="message_button">
             <form id="form_message" onsubmit="return closemsg(this.id)">
                 <!-- AWP_In_Variable Name='"INPUT".REARME' -->
                 <input type="hidden" id="rearme" name='"INPUT".REARME' value="1">
-                <button id="message_accept" type="submit">Aceptar</button>
+                <!-- AWP_In_Variable Name='"OUTPUT".MENSAJE' -->
+                <input type="hidden" id="message_reset" name='"OUTPUT".MENSAJE' value="0">
+                <button id="message_accept" type="submit">ACEPTAR</button>
             </form>
         </div>
     </div>
@@ -35,29 +45,35 @@
         <input id="type" type="hidden" value="">
         <div id="secundario">
             <div id="logo">
-                <div id="inner_logo">test</div>
+                <div id="inner_logo"><img src="img/logo.png"></div>
             </div>
             <div id="switch_manauto">
                 <div class="vertical_half">
                     <form id="form_manual" onsubmit="return showhide('auto_display','control_manual',this.id)">
                         <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
                         <input type="hidden" name='"INPUT".MANU_AUTO' value="0">
-                        <button id="button_manual" type="submit">Manual</button>
+                        <button id="button_manual" type="submit">MANUAL</button>
                     </form>
                 </div>
                 <div class="vertical_half">
                     <form id="form_auto" onsubmit="return showhide('control_manual', 'auto_display',this.id)">
                         <!-- AWP_In_Variable Name='"INPUT".MANU_AUTO' -->
                         <input type="hidden" name='"INPUT".MANU_AUTO' value="1">
-                        <button id="button_auto" type="submit">Auto</button>
+                        <button id="button_auto" type="submit">AUTO</button>
                     </form>
                 </div>
             </div>
             <div id="stats">
                 <div id="inner_stats">
-                    <!--<div id="magic" class="magic" onclick="swap()">
-                        <div id="txt_graphs">GRAPHS</div>
-                    </div>-->
+                    <img src="img/logo.png">
+                    <div id="graph" onclick="expand_graph()">
+                        <div id="close_graph" onclick="close_graph()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                        <div id="chart_div"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,10 +82,12 @@
                 <div  id="manual_display" class="horizontal_float">
                     <div id="fade_manual_display"></div>
                     <div id="control_manual">
+                        <span id="span_manual" class="div_title">MANUAL</span>
                         <div id="inner_manual">
                             <form id="form_inner_manual" onsubmit="return positionButton(this.id)">
                                 <div id="manual_input">
                                     <div id="test">
+                                        <p>POSICIÓN:</p>
                                         <!-- AWP_In_Variable Name='"INPUT".POS_X_MM' -->
                                         <input id="manual_data" name='"INPUT".POS_X_MM' type="text" value="1" maxlength="3">
                                     </div>
@@ -96,12 +114,13 @@
                     </div>
                 </div>
                 <div id="always_displayed" class="horizontal_float">
+                    <span id="span_manual" class="div_title">INDICADORES</span>
                     <div id="inner_displayed">
-                        <input id="c_posicion" type="text" name="" disabled="true" value="0">Posicion
-                        <input id="c_speed" type="text" name="" disabled="true">Speed<br/>
-                        <div class="indicadores" id="ready" value="0"></div>Preparado<br/>
-                        <div class="indicadores" id="alarm"></div>Alarma<br/>
-                        <div class="indicadores" id="svre"></div>Par Motor<br/>
+                        <input id="c_posicion" type="text" name="" disabled="true" value="0">POSICIÓN<br/><br/>
+                        <input id="c_speed" type="text" name="" disabled="true">SPEED<br/><br/>
+                        <div class="indicadores" id="ready" value="0"></div>PREPARADO<br/><br/>
+                        <div class="indicadores" id="alarm"></div>ALARMA<br/><br/>
+                        <div class="indicadores" id="svre"></div>PAR MOTOR<br/><br/>
                         <div class="indicadores" id="busy"></div>EN MOVIMIENTO
                     </div>
                 </div>
@@ -110,9 +129,8 @@
                 <div  id="auto_display" class="horizontal_float horizontal_float_responsive">
                     <div id="fade_auto_display"></div>
                     <div id="control_auto">
-
+                        <span id="span_auto" class="div_title">AUTOMÁTICO</span>
                         <div id="inner_auto">
-                            Automatico
 
                             
                             <form id="ciclosFormu">
@@ -126,50 +144,95 @@
                                         CICLO UNICO
                                     </button>
                                 </div>
+                                <br/><br/>
                                 <div id="ciclos">
                                     <div id="numCiclos">
                                         <p>NUMERO CICLOS</p>
                                         <!-- AWP_In_Variable Name='"INPUT".N_CICLOS' -->
                                         <input type="number" name='"INPUT".N_CICLOS' id="nCiclos" min="0">
                                     </div>
+                                    <br/><br/>
                                     <div id="rCiclos">
-                                        <p>CICLOS REALIZADOS</p>
-                                        <!-- AWP_In_Variable Name=':="OUTPUT".C_REALIZADOS:' -->
-                                        <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".C_REALIZADOS:' disabled>
+                                        <p>CICLOS <br/> REALIZADOS</p>
+                                        <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".CV_COUNT1:' disabled>
                                     </div>
                                 </div>
                             </form>
                             <div id="pos">
-                                <table border="1" id="tablaFunciones">
+                                <table id="tablaFunciones">
                                     <tr>
-                                        <th>
+                                        <th colspan="5">
                                             POSICION PREDETERMINADA
                                         </th>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="apilar" method="post">
+                                        <form id="apilar" onsubmit="return request2server(this.id)">
                                             <th>APILAR</th>
-                                            <td><input type="submit" name="enviar" id="enviar1" value="1"></td>
-                                            <td><input type="submit" name="enviar" id="enviar2" value="2"></td>
-                                            <td><input type="submit" name="enviar" id="enviar3" value="3"></td>
-                                            <td><input type="submit" name="enviar" id="enviar4" value="4"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB0' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB0' id="enviar1" value="0">
+                                                <button type="submit" id="rb1" class="row1_button" onclick="resetRow('row1','enviar1',this.className,this.id)">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB1' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB1' id="enviar2" value="0">
+                                                <button type="submit" id="rb2" class="row1_button" onclick="resetRow('row1','enviar2',this.className,this.id)">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB2' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB2' id="enviar3" value="0">
+                                                <button type="submit" id="rb3" class="row1_button" onclick="resetRow('row1','enviar3',this.className,this.id)">3</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB3' -->
+                                                <input type="hidden" class="row1" name='"INPUT".WEB3' id="enviar4" value="0">
+                                                <button type="submit" id="rb4" class="row1_button" onclick="resetRow('row1','enviar4',this.className,this.id)">4</button>
+                                            </td>
                                         </form>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="empaquetar" method="post">
+                                        <form id="empaquetar" onsubmit="return request2server(this.id)">
                                             <th>EMPAQUETAR</th>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar1" value="1"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar2" value="2"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar3" value="3"></td>
-                                            <td><input type="submit" name="empaquetar" id="empaquetar4" value="4"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB4' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB4' id="empaquetar1" value="0">
+                                                <button type="submit" id="rb5" class="row2_button" onclick="resetRow('row2','empaquetar1',this.className,this.id)">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB5' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB5' id="empaquetar2" value="0">
+                                                <button type="submit" id="rb6" class="row2_button" onclick="resetRow('row2','empaquetar2',this.className,this.id)">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB6' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB6' id="empaquetar3" value="0">
+                                                <button type="submit" id="rb7" class="row2_button" onclick="resetRow('row2','empaquetar3',this.className,this.id)">3</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB7' -->
+                                                <input type="hidden" class="row2" name='"INPUT".WEB7' id="empaquetar4" value="0">
+                                                <button type="submit" id="rb8" class="row2_button" onclick="resetRow('row2','empaquetar4',this.className,this.id)">4</button>
+                                            </td>
                                         </form>
                                     </tr>
                                     <tr>
-                                        <form name="apilar" id="etiquetar" method="post">
+                                        <form id="etiquetar" onsubmit="return request2server(this.id)">
                                             <th>ETIQUETAR</th>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar1" value="1"></td>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar2" value="2"></td>
-                                            <td><input type="submit" name="etiquetar" id="etiquetar3" value="3"></td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB8' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB8' id="etiquetar1" value="0">
+                                                <button type="submit" id="rb9" class="row3_button" onclick="resetRow('row3','etiquetar1',this.className,this.id)">1</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB9' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB9' id="etiquetar2" value="0">
+                                                <button type="submit" id="rb10" class="row3_button" onclick="resetRow('row3','etiquetar2',this.className,this.id)">2</button>
+                                            </td>
+                                            <td>
+                                                <!-- AWP_In_Variable Name='"INPUT".WEB10' -->
+                                                <input type="hidden" class="row3" name='"INPUT".WEB10' id="etiquetar3" value="0">
+                                                <button type="submit" id="rb11" class="row3_button" onclick="resetRow('row3','etiquetar3',this.className,this.id)">3</button>
+                                            </td>
                                         </form>
                                     </tr>
                                 </table>
@@ -182,6 +245,7 @@
                     </div>
                 </div>
                 <div id="pause_continue" class="horizontal_float horizontal_float_responsive">
+                    <span id="span_manual" class="div_title">INDICADORES</span>
                     <div id="inner_pause">
                         <div id="inner_pause_responsive">
                             <div class="vertical_third">
@@ -193,7 +257,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="pause">Pause</label>
+                                        <label for="pause">PAUSE</label>
                                     </div>
                                 </form>
                             </div>
@@ -206,7 +270,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="continuar">Continuar</label>
+                                        <label for="continuar">CONTINUAR</label>
                                     </div>
                                 </form>
                             </div>
@@ -219,7 +283,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="paro">Paro</label>
+                                        <label for="paro">PARO</label>
                                     </div>
                                 </form>
                             </div>

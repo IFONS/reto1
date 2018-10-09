@@ -20,6 +20,7 @@ $(document).ready(function () {
     $("body").width(w);
     showmsg();
 });
+
 /**
  * Cuando la ventana se reescala cambia las dimensiones del body para que la web sea responsive
  */
@@ -30,9 +31,11 @@ $(window).resize(function () {
         var w = $(window).width();
         $("body").height(h);
         $("body").width(w);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
     }
-
 });
+
 /**
  * Lectura de variables del servidor
  */
@@ -45,11 +48,13 @@ setInterval(function () {
     aplicarOutputButton("alarm", document.getElementById("alarmInput").value);
     aplicarOutputButton("svre", document.getElementById("svreInput").value);
     aplicarOutputButton("busy", document.getElementById("busyInput").value);
+    if(document.getElementById("messageInput").value == 1)
+        showmsg();
 },500);
 
 /**
  * Envio de datos al servidor
- * @param id del formulario del que vienen los datos.
+ * @param idform id del formulario del que vienen los datos.
  * @returns siempre falso para que la web no se recargue pero si que envien los datos.
  */
 function request2server(idform) {
@@ -76,10 +81,11 @@ function showmsg(){
 
 /**
  * Cierra el mensaje
- * @param id del formulario a enviar
+ * @param idform id del formulario a enviar
  * @returns siempre false para que se envien los datos y no se recargue la web
  */
-function closemsg(idform){ 
+function closemsg(idform){
+    document.getElementById("messageInput").value = 0;
     request2server(idform); 
     document.getElementById("rearme").value = "0"; 
     setTimeout(function () { 
@@ -107,7 +113,7 @@ function positionAnimation() {
 
 /**
  *
- * @param id del formulario a enviar
+ * @param idform id del formulario a enviar
  * @returns siempre false para que se envien los datos y no se recargue la web
  */
 function positionButton(idform) { 
@@ -125,9 +131,9 @@ function positionButton(idform) {
 
 /**
  * Funcion que esconde y muestra elementos segun el tamaño de la pantalla y la opcion manual o automatico
- * @param elemento a esconder
- * @param elemento a mostrar
- * @param formulario a enviar
+ * @param tohide elemento a esconder
+ * @param toshow elemento a mostrar
+ * @param idform formulario a enviar
  * @returns siempre false para que se envien los datos y no se recargue la web
  */
 function showhide(tohide, toshow,idform){
@@ -160,6 +166,9 @@ function showhide(tohide, toshow,idform){
             document.getElementById("fade_manual_display").classList.remove("disable");
             document.getElementById("button_manual").removeAttribute("disabled","disabled");
             document.getElementById("button_auto").setAttribute("disabled","disabled");
+            fakeClick("rb1");
+            fakeClick("rb5");
+            fakeClick("rb9");
         }
     }
     return false;
@@ -167,8 +176,8 @@ function showhide(tohide, toshow,idform){
 
 /**
  * Funcion que envia un valor en concreto sin formulario
- * @param id del boton que ha sido pulsado
- * @param nombre del boton que ha sido pulsado y variable a enviar al servidor
+ * @param idPulsador id del boton que ha sido pulsado
+ * @param namePulsador nombre del boton que ha sido pulsado y variable a enviar al servidor
  */
 function Pulse(idPulsador, namePulsador){
     if(document.getElementById(idPulsador).value != 1){
@@ -179,11 +188,10 @@ function Pulse(idPulsador, namePulsador){
         request2serverPulsador(namePulsador, 0);
     }
 }
-
 /**
  * Funcion que envia una unica variable sin necesidad de formulario
- * @param variable a enviar al servidor
- * @param valor a enviar al servidor
+ * @param nameVariable variable a enviar al servidor
+ * @param value a enviar al servidor
  * @returns siempre false para que se envien los datos y no se recargue la web
  */
 function request2serverPulsador(nameVariable, value) {
@@ -199,10 +207,11 @@ function request2serverPulsador(nameVariable, value) {
     });
     return false;
 }
+
 /**
  * Funcion que reflejara los cambios en el servidor
- * @param id del elemento en que se reflejaran los cambios en el servidor
- * @param valor del ervidor
+ * @param ID del elemento en que se reflejaran los cambios en el servidor
+ * @param value del ervidor
  */
 function aplicarOutput(ID, value){
     document.getElementById(ID).value=value;
@@ -219,19 +228,22 @@ function aplicarOutputButton(ID, value){
     }
 }
 
-
-//FUNCION PARA LOS CICLOS
-
+/**
+ * Funcion que envia los ciclos a relizar
+ * @param uno diferenciador de ciclo unico y continuo
+ */
 function ciclos(uno)
 {
     var cUnico=document.getElementById("cUnico");
     var nCiclos=document.getElementById("nCiclos");
     var cContinuo=document.getElementById("cContinuos");
+    //cambiar a 0
     if(uno==1)
     {
-
+        /*nCiclos.setAttribute("disabled","disabled");
+        cContinuo.setAttribute("disabled","disabled");*/
         request2serverPulsador(cContinuo.name, 0);
-        request2serverPulsador(nCiclos.name,1);
+        request2serverPulsador(nCiclos.name,0);
         request2serverPulsador(cUnico.name, 1);
 
     }
@@ -244,10 +256,85 @@ function ciclos(uno)
         }
         else
         {
+
+            /*nCiclos.removeAttribute("disabled");
+            cContinuo.removeAttribute("disabled");*/
             request2serverPulsador(cUnico.name, 0);
             request2serverPulsador(nCiclos.name, nCiclos.value);
             request2serverPulsador(cContinuo.name, 1);
         }
 
     }
+}
+
+/**
+ *
+ * @param className nombre de la clase a la que resetearenis el valor
+ * @param idRow cambia el valor a u 1 del input indicado
+ * @param buttonClass resetea el disabled
+ * @param idBlock id del boton que ha sido acctionado
+ */
+function resetRow(className, idRow, buttonClass, idBlock) {
+    var hiddens = document.getElementsByClassName(className);
+    var buttons = document.getElementsByClassName(buttonClass);
+    for (var x = 0; x < hiddens.length; x++){
+        hiddens[x].value = 0;
+        buttons[x].removeAttribute("disabled");
+        buttons[x].style.background = "none";
+    }
+    document.getElementById(idBlock).style.background = "red";
+    setTimeout(function () {
+        document.getElementById(idBlock).setAttribute("disabled","disabled");
+    },500);
+    document.getElementById(idRow).value = 1;
+}
+
+/**
+ * Funcion que reescala el grafico al expandirlo
+ */
+function expand_graph() {
+    var h = $(window).height();
+    var w = $(window).width();
+    var el = document.getElementById("graph");
+    if (!el.classList.contains("closed")){
+        el.classList.add("expanded");
+        el.style.width = w+"px";
+        el.style.height = h+"px";
+        $("#chart_div").fadeOut();
+        $("#chart_div").load(document.URL + " #chart_div");
+        $("#close_graph").fadeIn();
+        document.getElementById("close_graph").classList.add("close_graph");
+        setTimeout(function () {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            $("#chart_div").fadeIn(500);
+        },400);
+    }
+    el.classList.remove("closed");
+}
+
+/**
+ * Funcion que reescala el grafico al contraerlo
+ */
+function close_graph(){
+    var el = document.getElementById("graph");
+    el.classList.remove("expanded");
+    el.removeAttribute("style");
+    el.classList.add("closed");
+    $("#chart_div").fadeOut(1);
+    $("#close_graph").fadeOut(1);
+    document.getElementById("close_graph").classList.remove("close_graph");
+    setTimeout(function () {
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        $("#chart_div").fadeIn(400);
+    },400);
+}
+
+/**
+ * Funcion que simula el click de un boton
+ * @param idBoton boton a clicar
+ */
+function fakeClick(idBoton) {
+    $("#"+idBoton).click();
 }
