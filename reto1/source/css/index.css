@@ -107,19 +107,21 @@ footer{
     border: 1px dashed red;
     background-color: #00A1F1;
 }
-
+#inner_displayed{
+    padding: 5%;
+}
 #inner_auto p{
     display: inline;
     padding-top: 0;
 }
 
-#tablaFunciones{
-    float: left;
+#pos{
+    float: right;
     display: inline;
 }
 
 #inner_auto{
-    padding: 2% 0% 2% 2%;
+    padding: 8% 8% 2% 8%;
 }
 #control_auto{
     height: 100%;
@@ -224,6 +226,11 @@ footer{
 #form_auto, #form_manual{
     width: 100%;
     height: 100%;
+}
+
+#ciclosFormu, #ciclosFormu div{
+    display: inline;
+    float: left;
 }
 
 .vertical_third{
