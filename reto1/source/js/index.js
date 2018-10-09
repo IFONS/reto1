@@ -20,6 +20,7 @@ $(document).ready(function () {
     $("body").width(w);
     showmsg();
 });
+
 /**
  * Cuando la ventana se reescala cambia las dimensiones del body para que la web sea responsive
  */
@@ -34,6 +35,7 @@ $(window).resize(function () {
         google.charts.setOnLoadCallback(drawChart);
     }
 });
+
 /**
  * Lectura de variables del servidor
  */
