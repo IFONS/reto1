@@ -110,7 +110,7 @@ footer{
 
 #inner_auto p{
     display: inline;
-    padding-top: 10%;
+    padding-top: 0;
 }
 
 #tablaFunciones{
