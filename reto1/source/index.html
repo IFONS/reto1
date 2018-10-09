@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/phoneindex.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
     <style type="text/css"></style>
@@ -115,11 +116,11 @@
                 <div id="always_displayed" class="horizontal_float">
                     <span id="span_manual" class="div_title">INDICADORES</span>
                     <div id="inner_displayed">
-                        <input id="c_posicion" type="text" name="" disabled="true" value="0">Posicion
-                        <input id="c_speed" type="text" name="" disabled="true">Speed<br/>
-                        <div class="indicadores" id="ready" value="0"></div>Preparado<br/>
-                        <div class="indicadores" id="alarm"></div>Alarma<br/>
-                        <div class="indicadores" id="svre"></div>Par Motor<br/>
+                        <input id="c_posicion" type="text" name="" disabled="true" value="0">POSICIÓN<br/><br/>
+                        <input id="c_speed" type="text" name="" disabled="true">SPEED<br/><br/>
+                        <div class="indicadores" id="ready" value="0"></div>PREPARADO<br/><br/>
+                        <div class="indicadores" id="alarm"></div>ALARMA<br/><br/>
+                        <div class="indicadores" id="svre"></div>PAR MOTOR<br/><br/>
                         <div class="indicadores" id="busy"></div>EN MOVIMIENTO
                     </div>
                 </div>
@@ -143,14 +144,16 @@
                                         CICLO UNICO
                                     </button>
                                 </div>
+                                <br/><br/>
                                 <div id="ciclos">
                                     <div id="numCiclos">
                                         <p>NUMERO CICLOS</p>
                                         <!-- AWP_In_Variable Name='"INPUT".N_CICLOS' -->
                                         <input type="number" name='"INPUT".N_CICLOS' id="nCiclos" min="0">
                                     </div>
+                                    <br/><br/>
                                     <div id="rCiclos">
-                                        <p>CICLOS REALIZADOS</p>
+                                        <p>CICLOS <br/> REALIZADOS</p>
                                         <input type="text" name="realCiclos" id="realCiclos" value=':="OUTPUT".CV_COUNT1:' disabled>
                                     </div>
                                 </div>
@@ -158,7 +161,7 @@
                             <div id="pos">
                                 <table id="tablaFunciones">
                                     <tr>
-                                        <th>
+                                        <th colspan="5">
                                             POSICION PREDETERMINADA
                                         </th>
                                     </tr>
@@ -254,7 +257,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="pause">Pause</label>
+                                        <label for="pause">PAUSE</label>
                                     </div>
                                 </form>
                             </div>
@@ -267,7 +270,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="continuar">Continuar</label>
+                                        <label for="continuar">CONTINUAR</label>
                                     </div>
                                 </form>
                             </div>
@@ -280,7 +283,7 @@
                                                 onmouseup="Pulse(this.id, this.name)"></button>
                                     </div>
                                     <div class="inner_pause_labels">
-                                        <label for="paro">Paro</label>
+                                        <label for="paro">PARO</label>
                                     </div>
                                 </form>
                             </div>
